@@ -18,10 +18,13 @@ namespace Projet_320
         Tour tour1 = new Tour();
         Tour tour2 = new Tour();
 
-            joueur1.AffichageJoueur(10);
-            tour1.AffichageTour(15);
-            joueur2.AffichageJoueur(Config.SCREEN_WIDTH - 13);
-            tour2.AffichageTour(Config.SCREEN_WIDTH - 13);
+        //Affichage du jeu côté joueur 1
+        joueur1.AffichageJoueur(10);
+        tour1.AffichageTour(20);
+
+        //Affichage du jeu côté joueur 1
+        joueur2.AffichageJoueur(Config.SCREEN_WIDTH - 10);
+        tour2.AffichageTour(Config.SCREEN_WIDTH - 20);
             
 
 
