@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projet_320
 {
-    internal class Tir
+    internal class Interface_tir
     {
     }
 }

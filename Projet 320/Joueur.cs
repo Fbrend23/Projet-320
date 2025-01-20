@@ -14,20 +14,22 @@ namespace Projet_320
 
         private string[] joueurDisplay =
         {
-            @" o",
+            @" o ",
             @"/|\",
             @"/ \",
         };
         /// <summary>
-        /// 
+        /// Affichage du joueur
         /// </summary>
         /// <param name="setPositionX">Position depuis la gauche de la fenêtre</param>
         public void AffichageJoueur(int setPositionX)
         {
-                Console.SetCursorPosition(setPositionX, Config.SCREEN_HEIGHT);
-            for (int i = 0; i < joueurDisplay.Length; i++)
-            {
-                Console.WriteLine(joueurDisplay[i]);
+            Console.SetCursorPosition(setPositionX, Config.SCREEN_HEIGHT);
+            for (int i = 1; i <= joueurDisplay.Length; i++)
+            { 
+                Console.WriteLine(joueurDisplay[i-1]);
+                Console.SetCursorPosition(setPositionX, Config.SCREEN_HEIGHT + i);
+
             }
         }
     }

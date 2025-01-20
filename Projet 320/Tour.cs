@@ -8,5 +8,23 @@ namespace Projet_320
 {
     internal class Tour
     {
+        private string[] tourDisplay =
+        {
+            @"██",
+            @"██",
+            @"██",
+            @"██",
+            @"██",
+        };
+        public void AffichageTour(int setPositionX)
+        {
+            Console.SetCursorPosition(setPositionX, Config.SCREEN_HEIGHT);
+            for (int i = 1; i <= tourDisplay.Length; i++)
+            {
+                Console.WriteLine(tourDisplay[i - 1]);
+                Console.SetCursorPosition(setPositionX, Config.SCREEN_HEIGHT + i);
+
+            }
+        }
     }
 }
