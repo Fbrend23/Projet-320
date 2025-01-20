@@ -22,13 +22,13 @@ namespace Projet_320
         joueur1.AffichageJoueur(10);
         tour1.AffichageTour(20);
 
-        //Affichage du jeu côté joueur 1
+        //Affichage du jeu côté joueur 2
         joueur2.AffichageJoueur(Config.SCREEN_WIDTH - 10);
         tour2.AffichageTour(Config.SCREEN_WIDTH - 20);
             
 
 
-            Console.ReadLine(); //Maintient de la fenêtre pour tests
+        Console.ReadLine(); //Maintient de la fenêtre pour tests
 
 
         }
