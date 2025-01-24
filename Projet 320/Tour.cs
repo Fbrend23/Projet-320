@@ -10,39 +10,61 @@ namespace Projet_320
     {
         //*********** Propriétés ***********//
 
-        private string _bloc; //Block représentant la tour
-        private string[] _tourDisplay = new string[15];
+        private string _bloc = "█";     //Block représentant la tour
+        private int _positionX;         //Position par rapport à la largeur
+        private int _positionY;         //Position par rapport à la hauteur
+        private int _largeur;           //Largeur de la tour
+        private int _hauteur;           //Hauteur de la tour
+        private string[,] _tourArray;   //Tableau pour la tour
 
-        public Tour(string bloc)
+
+
+       /// <summary>
+       /// Constructeur
+       /// </summary>
+       /// <param name="largeur"></param>
+       /// <param name="hauteur"></param>
+       /// <param name="positionX"></param>
+       /// <param name="positionY"></param>
+        public Tour( int largeur, int hauteur,int positionX, int positionY)
         {
-            _bloc = bloc;
+            _largeur = largeur;
+            _hauteur = hauteur;
+            _positionX = positionX;
+            _positionY = positionY;
+            _tourArray = new string[hauteur, largeur];
         }
-
+        
         /// <summary>
-        /// Affiche la tour
+        /// Affichage de la tour
         /// </summary>
-        /// <param name="setPositionX"></param>
-        public void AffichageTour(int setPositionX)
+        public void AffichageTour()
         {
             //Remplissage du tableau avec un █
-            for (int i = 0; i < _tourDisplay.GetLength(0); i++)
+            for (int i = 0; i < _tourArray.GetLength(0); i++)
             {
-                _tourDisplay[i] = _bloc;
+                for(int j = 0; j < _tourArray.GetLength(1); j++)
+                _tourArray[i,j] = _bloc;
             }
 
             //Affichage de la tour
-            Console.SetCursorPosition(setPositionX, Config.SCREEN_HEIGHT - 2);
-            for (int i = 0; i < 5; i++)
+            Console.SetCursorPosition(_positionX, _positionY);
+            for (int i = 0; i < _hauteur; i++)
             {
-                Console.SetCursorPosition(setPositionX, Config.SCREEN_HEIGHT - 2 +i);
-                for (int j = 0; j < 3; j++)
+                Console.SetCursorPosition(_positionX, _positionY + i);
+                for (int j = 0; j < _largeur; j++)
                 {
-                    Console.Write(_tourDisplay[i]);
+                    Console.Write(_tourArray[i, j]);
                 }
                 Console.WriteLine();
             }
         }
+        /// <summary>
+        /// Remplace les blocs de la tour s'ils sont touchés
+        /// </summary>
+        public void TourCollision()
+        {
 
-        public void 
+        }
     }
 }
