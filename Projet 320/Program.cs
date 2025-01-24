@@ -7,16 +7,16 @@ namespace Projet_320
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-        //Taille de la fenêtre imposée
+
+        //Initialisation des objets
         Console.SetWindowSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
-
-
         Joueur joueur1 = new Joueur();
         Joueur joueur2 = new Joueur();
-        Tour tour1 = new Tour();
-        Tour tour2 = new Tour();
+        Tour tour1 = new Tour("█");
+        Tour tour2 = new Tour("█");
+
 
         //Affichage du jeu côté joueur 1
         joueur1.AffichageJoueur(10);
@@ -25,7 +25,7 @@ namespace Projet_320
         //Affichage du jeu côté joueur 2
         joueur2.AffichageJoueur(Config.SCREEN_WIDTH - 10);
         tour2.AffichageTour(Config.SCREEN_WIDTH - 20);
-            
+
 
 
         Console.ReadLine(); //Maintient de la fenêtre pour tests

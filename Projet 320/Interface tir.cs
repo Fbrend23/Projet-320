@@ -8,5 +8,6 @@ namespace Projet_320
 {
     internal class Interface_tir
     {
+        //*********** Propriétés ***********//
     }
 }

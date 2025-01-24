@@ -9,10 +9,8 @@ namespace Projet_320
 {
     internal class Joueur
     {
-        private string _joueur1;
-        private string _joueur2;
-
-        private string[] joueurDisplay =
+        //*********** Propriétés ***********//
+        private readonly string[] joueurDisplay =
         {
             @" o ",
             @"/|\",
