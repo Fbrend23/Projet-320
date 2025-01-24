@@ -10,6 +10,11 @@ namespace Projet_320
     internal class Joueur
     {
         //*********** Propriétés ***********//
+        private string _nom;
+        private bool _IsTurnActive;
+        private int _vie;
+        private int _positionX;
+        private int _positionY;
         private readonly string[] joueurDisplay =
         {
             @" o ",
@@ -17,17 +22,34 @@ namespace Projet_320
             @"/ \",
         };
         /// <summary>
-        /// Affichage du joueur
+        /// Cnstructeur
         /// </summary>
-        /// <param name="setPositionX">Position depuis la gauche de la fenêtre</param>
-        public void AffichageJoueur(int setPositionX)
+        /// <param name="nom"></param>
+        /// <param name="isTurnActive"></param>
+        public Joueur(string nom, bool isTurnActive, int vie, int positionX, int positionY)
         {
-            Console.SetCursorPosition(setPositionX, Config.SCREEN_HEIGHT);
+            _nom = nom;
+            _IsTurnActive = isTurnActive;
+            _vie = vie;
+            _positionX = positionX;
+            _positionY = positionY;
+        }
+
+
+
+        /// <summary>
+        /// Affichage des joueurs
+        /// </summary>
+        public void AffichageJoueur()
+        {
+            Console.SetCursorPosition(_positionX, Config.SCREEN_HEIGHT + 3);
+            Console.WriteLine(_nom);    
+            Console.SetCursorPosition(_positionX, Config.SCREEN_HEIGHT);
+            
             for (int i = 1; i <= joueurDisplay.Length; i++)
             { 
                 Console.WriteLine(joueurDisplay[i-1]);
-                Console.SetCursorPosition(setPositionX, Config.SCREEN_HEIGHT + i);
-
+                Console.SetCursorPosition(_positionX, Config.SCREEN_HEIGHT + i);
             }
         }
     }
