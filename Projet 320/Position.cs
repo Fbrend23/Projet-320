@@ -9,8 +9,32 @@ namespace Projet_320
     internal class Position
     {
         //*********** Propriétés ***********//
-        public int _x;
+        public int _x; //todo
         public int _y;
+
+        public int X
+        {
+            get
+            {
+                return _x;
+            }
+            set
+            {
+                _x = value;
+            }
+        }
+
+        public int Y
+        {
+            get
+            {
+                return _y;
+            }
+            set
+            {
+                _y = value;
+            }
+        }
 
         /// <summary>
         /// Constructeur
