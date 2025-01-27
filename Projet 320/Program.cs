@@ -12,10 +12,10 @@ namespace Projet_320
 
         //Initialisation des objets
         Console.SetWindowSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
-        Joueur joueur1 = new Joueur("J1", true, 3, 10, Config.SCREEN_HEIGHT - 2);
-        Joueur joueur2 = new Joueur("J2", false, 3, Config.SCREEN_WIDTH - 10, Config.SCREEN_HEIGHT - 2);
-        Tour tour1 = new Tour(3,5,20, Config.SCREEN_HEIGHT - 2);
-        Tour tour2 = new Tour(3,5, Config.SCREEN_WIDTH -20, Config.SCREEN_HEIGHT - 2);
+        Joueur joueur1 = new Joueur("J1", true, 3, new Position(10, Config.SCREEN_HEIGHT - 2));
+        Joueur joueur2 = new Joueur("J2", false, 3, new Position(Config.SCREEN_WIDTH - 10, Config.SCREEN_HEIGHT - 2));
+        Tour tour1 = new Tour(3,5,new Position(20, Config.SCREEN_HEIGHT - 2));
+        Tour tour2 = new Tour(3,5,new Position(Config.SCREEN_WIDTH -20, Config.SCREEN_HEIGHT - 2));
 
 
         //Affichage du jeu côté joueur 1

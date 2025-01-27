@@ -11,27 +11,25 @@ namespace Projet_320
         //*********** Propriétés ***********//
 
         private string _bloc = "█";     //Block représentant la tour
-        private int _positionX;         //Position par rapport à la largeur
-        private int _positionY;         //Position par rapport à la hauteur
+        private Position _position;
         private int _largeur;           //Largeur de la tour
         private int _hauteur;           //Hauteur de la tour
         private string[,] _tourArray;   //Tableau pour la tour
 
 
 
-       /// <summary>
-       /// Constructeur
-       /// </summary>
-       /// <param name="largeur"></param>
-       /// <param name="hauteur"></param>
-       /// <param name="positionX"></param>
-       /// <param name="positionY"></param>
-        public Tour( int largeur, int hauteur,int positionX, int positionY)
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="largeur"></param>
+        /// <param name="hauteur"></param>
+        /// <param name="position"></param>
+       
+        public Tour(int largeur, int hauteur, Position position)
         {
             _largeur = largeur;
             _hauteur = hauteur;
-            _positionX = positionX;
-            _positionY = positionY;
+            _position = position;
             _tourArray = new string[hauteur, largeur];
         }
         
@@ -48,10 +46,10 @@ namespace Projet_320
             }
 
             //Affichage de la tour
-            Console.SetCursorPosition(_positionX, _positionY);
+            Console.SetCursorPosition(_position._x,_position._y);
             for (int i = 0; i < _hauteur; i++)
             {
-                Console.SetCursorPosition(_positionX, _positionY + i);
+                Console.SetCursorPosition(_position._x, _position._y + i);
                 for (int j = 0; j < _largeur; j++)
                 {
                     Console.Write(_tourArray[i, j]);
@@ -64,7 +62,7 @@ namespace Projet_320
         /// </summary>
         public void TourCollision()
         {
-
+            //todo
         }
     }
 }
