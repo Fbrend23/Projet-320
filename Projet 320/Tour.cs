@@ -46,10 +46,10 @@ namespace Projet_320
             }
 
             //Affichage de la tour
-            Console.SetCursorPosition(_position._x,_position._y);
+            Console.SetCursorPosition(_position.X,_position.Y);
             for (int i = 0; i < _hauteur; i++)
             {
-                Console.SetCursorPosition(_position._x, _position._y + i);
+                Console.SetCursorPosition(_position.X, _position.Y + i);
                 for (int j = 0; j < _largeur; j++)
                 {
                     Console.Write(_tourArray[i, j]);
