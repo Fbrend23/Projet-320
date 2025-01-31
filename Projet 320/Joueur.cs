@@ -45,12 +45,12 @@ namespace Projet_320
         {
             Console.SetCursorPosition(_position.X, Config.SCREEN_HEIGHT + 3);
             Console.WriteLine(_nom);    
-            Console.SetCursorPosition(_position.X, Config.SCREEN_HEIGHT);
+            Console.SetCursorPosition(_position.X, Config.SCREEN_HEIGHT - _position.Y);
             
             for (int i = 1; i <= joueurDisplay.Length; i++)
             { 
                 Console.WriteLine(joueurDisplay[i-1]);
-                Console.SetCursorPosition(_position.X, Config.SCREEN_HEIGHT + i);
+                Console.SetCursorPosition(_position.X, Config.SCREEN_HEIGHT - _position.Y + i);
             }
         }
     }

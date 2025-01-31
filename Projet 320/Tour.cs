@@ -17,7 +17,6 @@ namespace Projet_320
         private string[,] _tourArray;   //Tableau pour la tour
 
 
-
         /// <summary>
         /// Constructeur
         /// </summary>
