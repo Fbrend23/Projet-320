@@ -16,18 +16,14 @@ namespace Projet_320
         private int _powerMax = 100;
         private string _shootPoint = "·";
         private Position _position;
+        private int _angle;
 
         public Interface_tir(Position position)
         {
 
             _position = position;
         }
-
-        public void DisplayShoot()
-        {
-           
-        }
-    
+   
 
         /// <summary>
         /// Calcul de l'angle de tir
@@ -38,7 +34,7 @@ namespace Projet_320
             int angle = _angleMin;
             int direction = 1; // 1 = droite, -1 = gauche
             Console.SetCursorPosition(0, 0);
-            Console.WriteLine("→ Sélection de l'angle (Appuie sur [Espace] pour valider) :");
+            Console.WriteLine("→ Sélection de l'angle (Appuie sur [Espace] pour valider) : ");
 
             while (true)
             {
@@ -46,12 +42,14 @@ namespace Projet_320
                 // Affichage de l'angle
                 Console.Write($"Angle : {angle}° ");
 
-                // Attendre un peu pour le mouvement fluide
-                Thread.Sleep(100);
+                // Affichage de l'arc avec l'angle courant passé en paramètre
+                TirDisplay(angle);
+
+                // Attendre un peu pour un mouvement fluide
+                Thread.Sleep(200);
 
                 // Changer l'angle
                 angle = angle + (direction * 5);
-
 
                 // Changer la direction si on atteint les limites
                 if (angle >= _angleMax || angle <= _angleMin) 
@@ -68,8 +66,38 @@ namespace Projet_320
                         break;
                     }
                 }
+
             }
-            return angle;
+            return angle ;
+        }
+        public void TirDisplay(int currentAngle)
+        {
+            _angle = currentAngle;
+            int arc = 10;
+            int pas = 10; //Pas qui parcours les angles
+
+            for (int i = _angleMin; i <= _angleMax; i = i + pas)
+            {
+                // Conversion de l'angle en radians
+                double rad = i * Math.PI / 180.0;
+                // Calcul des coordonnées du point sur l'arc
+                int x = _position.X + (int)(arc * Math.Cos(rad));
+                int y = _position.Y - (int)(arc * Math.Sin(rad)); 
+
+                // Si cet angle est proche de l'angle sélectionné, on le met en surbrillance
+                if (Math.Abs(i - _angle) < (pas / 2))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.SetCursorPosition(x, y);
+                    Console.Write(_shootPoint);
+                    Console.ResetColor();
+                }
+                else
+                {
+                    Console.SetCursorPosition(x, y);
+                    Console.Write("");
+                }
+            }
         }
 
         //public int SelectPower()
@@ -77,10 +105,6 @@ namespace Projet_320
         //    return power;
         //}
 
-        //public int TirDisplay()
-        //{
-
-        //}
 
 
     }

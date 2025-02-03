@@ -25,7 +25,7 @@ namespace Projet_320
         Tour tour1 = new Tour(3,5,new Position(20, Config.SCREEN_HEIGHT - 12));
         Tour tour2 = new Tour(3,5,new Position(Config.SCREEN_WIDTH -20, Config.SCREEN_HEIGHT - 12));
 
-        Interface_tir interface1 = new Interface_tir(new Position(10, Config.SCREEN_HEIGHT - 10));
+        Interface_tir interface1 = new Interface_tir(new Position(8, Config.SCREEN_HEIGHT -10));
 
         //Affichage du jeu côté joueur 1
         joueur1.AffichageJoueur();
@@ -37,9 +37,7 @@ namespace Projet_320
 
 
         interface1.SelectAngle();
-        interface1.DisplayShoot();
-
-
+       
         Console.ReadLine(); //Maintient de la fenêtre pour tests
 
 

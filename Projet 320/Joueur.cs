@@ -43,8 +43,6 @@ namespace Projet_320
         /// </summary>
         public void AffichageJoueur()
         {
-            Console.SetCursorPosition(_position.X, Config.SCREEN_HEIGHT + 3);
-            Console.WriteLine(_nom);    
             Console.SetCursorPosition(_position.X, Config.SCREEN_HEIGHT - _position.Y);
             
             for (int i = 1; i <= joueurDisplay.Length; i++)
