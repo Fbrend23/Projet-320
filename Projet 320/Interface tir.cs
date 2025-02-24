@@ -50,7 +50,7 @@ namespace Projet_320
                 TirDisplay(angle);
 
                 // Attendre un peu pour un mouvement fluide
-                Thread.Sleep(200);
+                Thread.Sleep(150);
 
                 // Changer l'angle
                 angle = angle + (direction * 5);
@@ -77,7 +77,7 @@ namespace Projet_320
         public void TirDisplay(int currentAngle)
         {
             _angle = currentAngle;
-            int arc = 4; // Arc du tir
+            int arc = 3; // Arc du tir
 
             // Conversion de l'angle en radians
             double rad = currentAngle * Math.PI / 180.0;
