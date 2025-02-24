@@ -37,13 +37,14 @@ namespace Projet_320
             int angle = _angleMin;
             int direction = 1; // 1 = droite, -1 = gauche
             Console.SetCursorPosition(0, 0);
-            Console.WriteLine("→ Sélection de l'angle (Appuie sur [Espace] pour valider) : ");
+            Console.WriteLine("Sélection de l'angle (Appuie sur [Espace] pour valider) : ");
+
 
             while (true)
             {
                 Console.SetCursorPosition(0, 1);
-                // Affichage de l'angle
-                Console.Write($"Angle : {angle}° ");
+                // Affichage de l'angle pour test
+                //Console.Write($"Angle : {angle}° ");
 
                 // Affichage de l'arc avec l'angle courant passé en paramètre
                 
@@ -77,7 +78,7 @@ namespace Projet_320
         public void TirDisplay(int currentAngle)
         {
             _angle = currentAngle;
-            int arc = 3; // Arc du tir
+            int arc = 4; // Arc du tir
 
             // Conversion de l'angle en radians
             double rad = currentAngle * Math.PI / 180.0;
@@ -104,14 +105,57 @@ namespace Projet_320
             
         }
 
-      
-
-        //public int SelectPower()
-        //{
-        //    return power;
-        //}
 
 
+        public int SelectPower()
+        {
+            int barWidth = 20;
+            int power = _powerMin;
+            // Affichage de l'instruction sur une ligne dédiée
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("Sélection de la puissance (Appuie sur [Espace] pour valider) : ");
 
+            while (true)
+            {
+
+                    // Positionner le curseur sur la ligne d'affichage de la barre 
+                    Console.SetCursorPosition(2, 4);
+                    // Calculer le nombre de caractères à remplir en fonction de la puissance actuelle
+                    int filled = (int)((double)power / _powerMax * barWidth);
+                    // Construire la barre : encadrée par [ et ], remplie par '#' et des espaces pour le reste
+                    string bar = "[" + new string('█', filled) + new string(' ', barWidth - filled) + "]";
+                    // Afficher la barre et le pourcentage de puissance
+                    Console.Write(bar + " " + power + "%   ");
+                    // Petite pause pour animer le remplissage
+                    Thread.Sleep(100);
+
+                    // Augmenter la puissance progressivement
+                    power += 5;
+
+                if (power > _powerMax)
+                {
+                    power = _powerMax;
+                }
+                if (power == _powerMax) 
+                {
+                  power = _powerMin;
+                }
+
+
+
+                    // Vérifier si l'utilisateur appuie sur Espace
+                    if (Console.KeyAvailable)
+                    {
+                        ConsoleKey key = Console.ReadKey(true).Key;
+                        if (key == ConsoleKey.Spacebar)
+                        {
+                            break;
+                        }
+                    }
+                
+            }
+
+            return power;
+        }
     }
 }

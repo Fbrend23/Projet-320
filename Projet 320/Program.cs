@@ -40,6 +40,7 @@ namespace Projet_320
 
 
         interface1.SelectAngle();
+        interface1.SelectPower();
        
         Console.ReadLine(); //Maintient de la fenêtre pour tests
 
