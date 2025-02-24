@@ -118,24 +118,24 @@ namespace Projet_320
             while (true)
             {
 
-                    // Positionner le curseur sur la ligne d'affichage de la barre 
-                    Console.SetCursorPosition(2, 4);
-                    // Calculer le nombre de caractères à remplir en fonction de la puissance actuelle
-                    int filled = (int)((double)power / _powerMax * barWidth);
-                    // Construire la barre : encadrée par [ et ], remplie par '#' et des espaces pour le reste
-                    string bar = "[" + new string('█', filled) + new string(' ', barWidth - filled) + "]";
-                    // Afficher la barre et le pourcentage de puissance
-                    Console.Write(bar + " " + power + "%   ");
-                    // Petite pause pour animer le remplissage
-                    Thread.Sleep(100);
-
-                    // Augmenter la puissance progressivement
-                    power += 5;
+                // Positionner le curseur sur la ligne d'affichage de la barre 
+                Console.SetCursorPosition(2, 4);
+                // Calculer le nombre de caractères à remplir en fonction de la puissance actuelle
+                int filled = (int)((double)power / _powerMax * barWidth);
+                // Construire la barre : encadrée par [ et ], remplie par '#' et des espaces pour le reste
+                string bar = "[" + new string('█', filled) + new string(' ', barWidth - filled) + "]";
+                // Afficher la barre et le pourcentage de puissance
+                Console.Write(bar + " " + power + "%   ");
+                // Petite pause pour animer le remplissage
+                Thread.Sleep(100);
+                // Augmenter la puissance progressivement
+                power += 5;
 
                 if (power > _powerMax)
                 {
                     power = _powerMax;
                 }
+
                 if (power == _powerMax) 
                 {
                   power = _powerMin;
@@ -143,18 +143,16 @@ namespace Projet_320
 
 
 
-                    // Vérifier si l'utilisateur appuie sur Espace
-                    if (Console.KeyAvailable)
+                // Vérifier si l'utilisateur appuie sur Espace
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKey key = Console.ReadKey(true).Key;
+                    if (key == ConsoleKey.Spacebar)
                     {
-                        ConsoleKey key = Console.ReadKey(true).Key;
-                        if (key == ConsoleKey.Spacebar)
-                        {
-                            break;
-                        }
+                        break;
                     }
-                
+                }
             }
-
             return power;
         }
     }
