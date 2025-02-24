@@ -18,6 +18,9 @@ namespace Projet_320
         private Position _position;
         private int _angle;
 
+        private int _prevX = -1;
+        private int _prevY = -1;
+
         public Interface_tir(Position position)
         {
 
@@ -43,6 +46,7 @@ namespace Projet_320
                 Console.Write($"Angle : {angle}° ");
 
                 // Affichage de l'arc avec l'angle courant passé en paramètre
+                
                 TirDisplay(angle);
 
                 // Attendre un peu pour un mouvement fluide
@@ -73,32 +77,34 @@ namespace Projet_320
         public void TirDisplay(int currentAngle)
         {
             _angle = currentAngle;
-            int arc = 10;
-            int pas = 10; //Pas qui parcours les angles
+            int arc = 4; // Arc du tir
 
-            for (int i = _angleMin; i <= _angleMax; i = i + pas)
+            // Conversion de l'angle en radians
+            double rad = currentAngle * Math.PI / 180.0;
+            // Calcul des coordonnées du point sur l'arc
+            int x = _position.X + (int)(arc * Math.Cos(rad));
+            int y = _position.Y - (int)(arc * Math.Sin(rad));
+
+            // Effacer le point précédent, si existant
+            if (_prevX != -1 && _prevY != -1)
             {
-                // Conversion de l'angle en radians
-                double rad = i * Math.PI / 180.0;
-                // Calcul des coordonnées du point sur l'arc
-                int x = _position.X + (int)(arc * Math.Cos(rad));
-                int y = _position.Y - (int)(arc * Math.Sin(rad)); 
-
-                // Si cet angle est proche de l'angle sélectionné, on le met en surbrillance
-                if (Math.Abs(i - _angle) < (pas / 2))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.SetCursorPosition(x, y);
-                    Console.Write(_shootPoint);
-                    Console.ResetColor();
-                }
-                else
-                {
-                    Console.SetCursorPosition(x, y);
-                    Console.Write("");
-                }
+                Console.SetCursorPosition(_prevX, _prevY);
+                Console.Write(" ");
             }
+
+            // Affiche le nouveau point en surbrillance
+            Console.SetCursorPosition(x, y);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(_shootPoint);
+            Console.ResetColor();
+
+            //Mémorise la position actuelle
+            _prevX = x;
+            _prevY = y;
+            
         }
+
+      
 
         //public int SelectPower()
         //{
