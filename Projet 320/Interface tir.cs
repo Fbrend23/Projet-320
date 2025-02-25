@@ -9,18 +9,35 @@ namespace Projet_320
 {
     internal class Interface_tir
     {
+        //*********** Attributs ***********//
+        private int _angleMin = 0;          //Angle de tir min
+        private int _angleMax = 90;         //Angle de tir max
+        private int _powerMin = 0;          //Puissance de tir min
+        private int _powerMax = 100;        //Puissance de tir max
+        private string _shootPoint = "·";   //Caractère de l'interface
+        private Position _position;         //Position de l'interface
+        private int _angle;                 //Angle de tir
+        private int power;                  //Puissance de tir
+        private int _prevX = -1;            //Position X précédente
+        private int _prevY = -1;            //Position Y précédente
+
+
         //*********** Propriétés ***********//
-        private int _angleMin = 0;
-        private int _angleMax = 90;
-        private int _powerMin = 0;
-        private int _powerMax = 100;
-        private string _shootPoint = "·";
-        private Position _position;
-        private int _angle;
+        public int Angle
+        {
+            get
+            {
+                return _angle;
+            }
+        }
 
-        private int _prevX = -1;
-        private int _prevY = -1;
-
+        public int Power
+        {
+            get
+            {
+                return power;
+            }
+        }
         public Interface_tir(Position position)
         {
 
@@ -110,7 +127,7 @@ namespace Projet_320
         public int SelectPower()
         {
             int barWidth = 20;
-            int power = _powerMin;
+            power = _powerMin;
             // Affichage de l'instruction sur une ligne dédiée
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("Sélection de la puissance (Appuie sur [Espace] pour valider) : ");
@@ -122,8 +139,8 @@ namespace Projet_320
                 Console.SetCursorPosition(2, 4);
                 // Calculer le nombre de caractères à remplir en fonction de la puissance actuelle
                 int filled = (int)((double)power / _powerMax * barWidth);
-                // Construire la barre : encadrée par [ et ], remplie par '#' et des espaces pour le reste
-                string bar = "[" + new string('█', filled) + new string(' ', barWidth - filled) + "]";
+                // Construire la barre : encadrée par [ et ], remplie par '■' et des espaces pour le reste
+                string bar = "[" + new string('■', filled) + new string(' ', barWidth - filled) + "]";
                 // Afficher la barre et le pourcentage de puissance
                 Console.Write(bar + " " + power + "%   ");
                 // Petite pause pour animer le remplissage
@@ -135,7 +152,7 @@ namespace Projet_320
                 {
                     power = _powerMax;
                 }
-
+                //Retourne à 0 si le joueur n'a pas appuyer sur espace
                 if (power == _powerMax) 
                 {
                   power = _powerMin;
