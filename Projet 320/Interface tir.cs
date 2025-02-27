@@ -119,6 +119,8 @@ namespace Projet_320
             //Mémorise la position actuelle
             _prevX = x;
             _prevY = y;
+
+        
             
         }
 

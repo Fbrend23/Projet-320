@@ -20,6 +20,17 @@ namespace Projet_320
         private double _time;
         private double _initialVelocity;
         public bool _isActive;
+        private double _gravity = 9.81;
+
+
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <param name="power"></param>
+        /// <param name="position"></param>
+        /// <param name="isActive"></param>
+        /// <param name="time"></param>
         public Projectile(int angle, int power, Position position, bool isActive, double time)
         {
             _angle = angle;
@@ -27,7 +38,7 @@ namespace Projet_320
             _position = position;
            _isActive = isActive;
             _time = time;
-            _initialVelocity = power;
+            _initialVelocity = power / 7 ;
         }
 
         public int Angle
@@ -48,20 +59,42 @@ namespace Projet_320
         /// La soustraction pour y tient compte que dans la console, l'axe Y augmente vers le bas.
         /// </summary>
         /// <param name="deltaTime">Temps écoulé depuis la dernière mise à jour (en secondes).</param>
-        //public void Update(double deltaTime)
-        //{
-        //    _time += deltaTime;
-        //    double rad = Angle * Math.PI / 180.0;
-        //    int newX = _position.X + (int)(_initialVelocity * Math.Cos(rad) * _time);
-        //    int newY = _position.Y - (int)((_initialVelocity * Math.Sin(rad) * _time) - (0.5 * Gravity * _time * _time));
+        public void UpdateProjectile(double deltaTime)
+        {
+            
+            _time += deltaTime;
+            double rad = _angle * Math.PI / 180.0;
+            int newX = _position.X + (int)(_initialVelocity * Math.Cos(rad) * _time);
+            int newY = _position.Y - (int)((_initialVelocity * Math.Sin(rad) * _time) - (0.5 * _gravity * _time * _time));
 
-        //    Position = new Position(newX, newY);
+            _position = new Position(newX, newY);
 
-        //    // Si le projectile sort de la fenêtre ou "touche le sol", on le désactive.
-        //    if (newY >= Console.WindowHeight || newX >= Console.WindowWidth || newX < 0)
-        //    {
-        //        IsActive = false;
-        //    }
-        //}
+            // Si le projectile sort de la fenêtre ou "touche le sol", on le désactive.
+            if (newY >= Console.WindowHeight || newX >= Console.WindowWidth || newX < 0)
+            {
+                _isActive = false;
+            }
+        }
+        /// <summary>
+        /// Affiche le projectile dans la console à sa position actuelle.
+        /// </summary>
+        public void DisplayProjectile()
+        {
+            if (_isActive)
+            {
+                try
+                {
+                    Console.SetCursorPosition(_position.X, _position.Y);
+                    Console.Write("o");
+                    
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    // Si la position est hors écran, on peut ignorer l'affichage.
+                    _isActive = false;
+                }
+            }
+        }
     }
+
 }
