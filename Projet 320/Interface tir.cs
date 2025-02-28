@@ -71,7 +71,7 @@ namespace Projet_320
             int angle = _angleMin;
             int direction = 1; // 1 = droite, -1 = gauche
             Console.SetCursorPosition(0, 0);
-            Console.WriteLine("Sélection de l'angle (Appuie sur [Espace] pour valider) : ");
+            Console.WriteLine("Sélection de l'angle (Appuie sur [Espace] pour valider) :               "); // Beaucoup d'espace pour effacer le message de puissance
 
 
             while (true)

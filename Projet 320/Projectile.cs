@@ -76,6 +76,7 @@ namespace Projet_320
             {
                 _isActive = false;
             }
+    
         }
 
         /// <summary>
@@ -84,10 +85,13 @@ namespace Projet_320
         public void DisplayProjectile()
         {
             if (_isActive)
-            {
-
-                // Effacer le point précédent, si existant
-                if (_prevX != -1 && _prevY != -1)
+            { 
+            
+                Console.SetCursorPosition(_prevX, _prevY);
+                Console.Write(" ");
+            
+            // Effacer le point précédent, si existant
+            if (_prevX != -1 && _prevY != -1)
                 {
                     Console.SetCursorPosition(_prevX, _prevY);
                     Console.Write(" ");
@@ -106,6 +110,7 @@ namespace Projet_320
                 }
             }
         }
-    }
-
+     }
 }
+
+

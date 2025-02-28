@@ -66,7 +66,7 @@ namespace Projet_320
                     {
                         if (proj._isActive)
                         {
-                            proj.UpdateProjectile(0.1); // On simule 0,1 seconde d'écoulement
+                            proj.UpdateProjectile(0.05); // On simule 0,1 seconde d'écoulement
                             proj.DisplayProjectile();
                         }
                         else
