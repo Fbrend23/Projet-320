@@ -10,8 +10,8 @@ namespace Projet_320
     internal class Interface_tir
     {
         //*********** Attributs ***********//
-        private int _angleMin = 0;          //Angle de tir min
-        private int _angleMax = 90;         //Angle de tir max
+        private int _angleMin;              //Angle de tir min
+        private int _angleMax;              //Angle de tir max
         private int _powerMin = 0;          //Puissance de tir min
         private int _powerMax = 100;        //Puissance de tir max
         private string _shootPoint = "·";   //Caractère de l'interface
@@ -20,6 +20,7 @@ namespace Projet_320
         private int power;                  //Puissance de tir
         private int _prevX = -1;            //Position X précédente
         private int _prevY = -1;            //Position Y précédente
+        private bool _mirror;
 
 
         //*********** Propriétés ***********//
@@ -38,10 +39,26 @@ namespace Projet_320
                 return power;
             }
         }
-        public Interface_tir(Position position)
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="position"></param>
+        public Interface_tir(Position position, bool mirror)
         {
-
             _position = position;
+            _mirror = mirror;
+
+            //Activation du mode mirroir si c'est le joueur 2
+            if (_mirror == true)
+            {
+                _angleMin = 90;
+                _angleMax = 180;
+            }
+            else
+            {
+                _angleMin = 0;
+                _angleMax = 90;
+            }
         }
    
 

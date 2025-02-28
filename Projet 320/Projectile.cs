@@ -21,6 +21,8 @@ namespace Projet_320
         private double _initialVelocity;
         public bool _isActive;
         private double _gravity = 9.81;
+        private int _prevX = -1;
+        private int _prevY = -1;
 
 
         /// <summary>
@@ -75,6 +77,7 @@ namespace Projet_320
                 _isActive = false;
             }
         }
+
         /// <summary>
         /// Affiche le projectile dans la console à sa position actuelle.
         /// </summary>
@@ -82,11 +85,19 @@ namespace Projet_320
         {
             if (_isActive)
             {
+
+                // Effacer le point précédent, si existant
+                if (_prevX != -1 && _prevY != -1)
+                {
+                    Console.SetCursorPosition(_prevX, _prevY);
+                    Console.Write(" ");
+                }
                 try
                 {
                     Console.SetCursorPosition(_position.X, _position.Y);
                     Console.Write("x");
-                    
+                    _prevX = _position.X;
+                    _prevY = _position.Y;
                 }
                 catch (ArgumentOutOfRangeException)
                 {

@@ -9,44 +9,76 @@ namespace Projet_320
 {
     internal class Game
     {
-        private Joueur joueur1;
-        private Joueur joueur2;
-        private Tour tour1;
-        private Tour tour2;
-        private Interface_tir interfaceTir;
+        // Objets du jeu
+        private Joueur _joueur1;
+        private Joueur _joueur2;
+        private Tour _tour1;
+        private Tour _tour2;
+        private Interface_tir _interfaceTirJ1;
+        private Interface_tir _interfaceTirJ2;
+        private List<Projectile> _projectiles;
 
-        public Game()
-        {
-            // Initialise les objets 
-            joueur1 = new Joueur("J1", true, 3, new Position(10, 10));
-            joueur2 = new Joueur("J2", false, 3, new Position(Config.SCREEN_WIDTH - 10, 10));
-            tour1 = new Tour(3, 5, new Position(20, Config.SCREEN_HEIGHT - 12));
-            tour2 = new Tour(3, 5, new Position(Config.SCREEN_WIDTH - 20, Config.SCREEN_HEIGHT - 12));
-            interfaceTir = new Interface_tir(new Position(12, Config.SCREEN_HEIGHT - 12));
+        private bool _isPlayer1Turn = true;
+
+        public Game() 
+        { 
+        _joueur1 = new Joueur("J1", true, 3, new Position(10, 10));
+        _joueur2 = new Joueur("J2", false, 3, new Position(Config.SCREEN_WIDTH - 10, 10));
+        _tour1 = new Tour(3, 5, new Position(20, Config.SCREEN_HEIGHT - 12));
+        _tour2 = new Tour(3, 5, new Position(Config.SCREEN_WIDTH - 20, Config.SCREEN_HEIGHT - 12));
+        _interfaceTirJ1 = new Interface_tir(new Position(12, Config.SCREEN_HEIGHT - 12), false);
+        _interfaceTirJ2 = new Interface_tir(new Position(Config.SCREEN_WIDTH - 10, Config.SCREEN_HEIGHT - 12),true);
+        _projectiles = new List<Projectile>();       
         }
-
-        public void Run()
+        public void RunGame()
         {
             // Afficher les éléments du jeu
-            joueur1.AffichageJoueur();
-            tour1.AffichageTour();
-            joueur2.AffichageJoueur();
-            tour2.AffichageTour();
+            _joueur1.AffichageJoueur();
+            _tour1.AffichageTour();
+            _joueur2.AffichageJoueur();
+            _tour2.AffichageTour();
 
-            // Interface de tir
-            int angle = interfaceTir.SelectAngle();
-            int power = interfaceTir.SelectPower();
-
-            // Créer et animer le projectile
-            Projectile projectile = new Projectile(angle, power, new Position(10, Config.SCREEN_HEIGHT - 12), true, 0);
-            while (projectile._isActive)
+            while (true)
             {
-                projectile.UpdateProjectile(0.1);
-                projectile.DisplayProjectile();
-                Thread.Sleep(100);
-            }
+                // Selon le tour, afficher l'interface de tir correspondante
+                if (_isPlayer1Turn)
+                {
+                    int angle = _interfaceTirJ1.SelectAngle();
+                    int power = _interfaceTirJ1.SelectPower();
+                    // Créer le projectile à partir de la position de départ 
+                    Projectile projectile = new Projectile(angle, power, new Position(12, Config.SCREEN_HEIGHT - 12), true, 0);
+                    _projectiles.Add(projectile);
+                }
+                else
+                {
+                    int angle = _interfaceTirJ2.SelectAngle();
+                    int power = _interfaceTirJ2.SelectPower();
+                    // Position de départ pour le projectile du joueur 2 (en miroir)
+                    Projectile projectile = new Projectile(angle, power, new Position(Config.SCREEN_WIDTH - 12, Config.SCREEN_HEIGHT - 12), true, 0);
+                    _projectiles.Add(projectile);
+                }
 
-            Console.ReadLine(); // Maintient la fenêtre pour tests
-        }
+                // Animation du tir : mettre à jour et afficher les projectiles
+                while (_projectiles.Count > 0)
+                {
+                    // Pour éviter les modifications de la liste pendant l'itération, on parcourt une copie
+                    foreach (var proj in new List<Projectile>(_projectiles))
+                    {
+                        if (proj._isActive)
+                        {
+                            proj.UpdateProjectile(0.1); // On simule 0,1 seconde d'écoulement
+                            proj.DisplayProjectile();
+                        }
+                        else
+                        {
+                            _projectiles.Remove(proj);
+                        }
+                    }
+                    Thread.Sleep(100); // Pause pour l'animation
+                }
+                // Alterner le tour
+                _isPlayer1Turn = !_isPlayer1Turn;
+            }
+        }  
     }
 }

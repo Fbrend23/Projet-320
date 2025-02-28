@@ -24,7 +24,7 @@ namespace Projet_320
        
         Game game = new Game();
 
-        game.Run();
+        game.RunGame();
 
         }
     }
