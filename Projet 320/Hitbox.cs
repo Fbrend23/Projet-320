@@ -42,10 +42,9 @@ namespace Projet_320
         /// <returns></returns>
         public bool Collided()
         {
-            return (_position.X < other.Position.X + other.Width 
-                && _position.X + _width > other.Position.X 
-                && _position.Y < other.Position.Y + other.Height 
+            return (_position.X < other.Position.X + other.Width
+                && _position.X + _width > other.Position.X
+                && _position.Y < other.Position.Y + other.Height
                 && _position.Y + _height > other.Position.Y);
         }
-    }
 }
