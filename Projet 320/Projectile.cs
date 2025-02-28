@@ -38,7 +38,7 @@ namespace Projet_320
             _position = position;
            _isActive = isActive;
             _time = time;
-            _initialVelocity = power / 7 ;
+            _initialVelocity = power / 6 ;
         }
 
         public int Angle
@@ -85,7 +85,7 @@ namespace Projet_320
                 try
                 {
                     Console.SetCursorPosition(_position.X, _position.Y);
-                    Console.Write("o");
+                    Console.Write("x");
                     
                 }
                 catch (ArgumentOutOfRangeException)

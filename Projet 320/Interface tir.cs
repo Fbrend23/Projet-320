@@ -92,6 +92,10 @@ namespace Projet_320
             }
             return angle ;
         }
+        /// <summary>
+        /// Affiche les points pour les angles
+        /// </summary>
+        /// <param name="currentAngle"></param>
         public void TirDisplay(int currentAngle)
         {
             _angle = currentAngle;
@@ -125,7 +129,10 @@ namespace Projet_320
         }
 
 
-
+        /// <summary>
+        /// Gère la puissance de tir et de son affichage
+        /// </summary>
+        /// <returns></returns>
         public int SelectPower()
         {
             int barWidth = 20;
