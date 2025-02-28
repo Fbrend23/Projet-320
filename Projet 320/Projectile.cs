@@ -20,7 +20,7 @@ namespace Projet_320
         private double _time;
         private double _initialVelocity;
         public bool _isActive;
-        private double _gravity = 9.81;
+        private const double _gravity = 9.81;
         private int _prevX = -1;
         private int _prevY = -1;
 
@@ -86,10 +86,6 @@ namespace Projet_320
         {
             if (_isActive)
             { 
-            
-                Console.SetCursorPosition(_prevX, _prevY);
-                Console.Write(" ");
-            
             // Effacer le point précédent, si existant
             if (_prevX != -1 && _prevY != -1)
                 {

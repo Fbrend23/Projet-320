@@ -50,12 +50,16 @@ namespace Projet_320
 
 
         /// <summary>
-        /// Calcule la distance entre deux positions
+        /// Calcule la distance entre deux positions.
         /// </summary>
-        //private double Distance()
-        //{
-        //    //todo
-        //}
+        /// <param name="other">L'autre position</param>
+        /// <returns>La distance sous forme de double</returns>
+        public double DistanceTo(Position other)
+        {
+            int deltaX = other.X - this.X;
+            int deltaY = other.Y - this.Y;
+            return Math.Sqrt((deltaX * deltaX) + (deltaY * deltaY));
+        }
 
     }
 }
