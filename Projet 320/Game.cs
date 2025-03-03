@@ -69,6 +69,30 @@ namespace Projet_320
                             proj.UpdateProjectile(0.05); // On simule 0,1 seconde d'écoulement
                             proj.DisplayProjectile();
                         }
+
+                        if (_isPlayer1Turn)
+                        {
+                            if (_joueur2.HitBox.isTouched(proj.Position.X, proj.Position.Y))
+                            {
+                                proj._isActive = false;       // Désactive le projectile
+                                _joueur2.TakeDamage(1);         // Inflige un dégât au joueur 2
+                                                                // Optionnel : effacer l'affichage du projectile
+                                Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
+                                Console.Write(" ");
+                            }
+                        }
+                        else // Sinon, le joueur 2 tire et le projectile doit toucher le joueur 1
+                        {
+                            if (_joueur1.HitBox.isTouched(proj.Position.X, proj.Position.Y))
+                            {
+                                proj._isActive = false;       // Désactive le projectile
+                                                             //Ajouter dégats
+                                Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
+                                Console.Write(" ");
+                            }
+                        }
+                    }
+
                         else
                         {
                             _projectiles.Remove(proj);
