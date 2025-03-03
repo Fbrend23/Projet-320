@@ -17,12 +17,21 @@ namespace Projet_320
         private bool _IsTurnActive;
         private int _vie;
         private Position _position;
+        private Hitbox _hitbox;
         private readonly string[] joueurDisplay =
         {
             @" o ",
             @"/|\",
             @"/ \",
         };
+       
+        public Hitbox HitBox
+        {
+            get { return _hitbox; }
+            set { _hitbox = value; }
+        }
+
+
         /// <summary>
         /// Cnstructeur
         /// </summary>
@@ -34,6 +43,7 @@ namespace Projet_320
             _IsTurnActive = isTurnActive;
             _vie = vie;
             _position = position;
+            _hitbox = new Hitbox(3, 3, _position);
         }
 
 

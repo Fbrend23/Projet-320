@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +16,13 @@ namespace Projet_320
         private int _largeur;           //Largeur de la tour
         private int _hauteur;           //Hauteur de la tour
         private string[,] _tourArray;   //Tableau pour la tour
+        private Hitbox _hitbox;
 
+        public Hitbox Hitbox
+        {
+            get { return _hitbox; }
+            set { _hitbox = value; }
+        }
 
         /// <summary>
         /// Constructeur
@@ -23,15 +30,18 @@ namespace Projet_320
         /// <param name="largeur"></param>
         /// <param name="hauteur"></param>
         /// <param name="position"></param>
-       
         public Tour(int largeur, int hauteur, Position position)
         {
             _largeur = largeur;
             _hauteur = hauteur;
             _position = position;
             _tourArray = new string[hauteur, largeur];
+            _hitbox = new Hitbox(_hauteur, _largeur, _position);
         }
-        
+
+
+    
+
         /// <summary>
         /// Affichage de la tour
         /// </summary>
