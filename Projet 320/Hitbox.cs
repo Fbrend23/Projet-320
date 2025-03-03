@@ -37,14 +37,16 @@ namespace Projet_320
             set { _position = value; }
         }
         /// <summary>
-        /// Regarde si y a collision entre 2 hitbox
+        /// Regarde si une coordonée est à l'intérieur une hitbox
         /// </summary>
-        /// <returns></returns>
-        public bool Collided()
+        /// <param name="x">position x</param>
+        /// <param name="y">position y</param>
+        /// <returns>True si y a collision</returns>
+
+        public bool isTouched(int x, int y)
         {
-            return (_position.X < other.Position.X + other.Width
-                && _position.X + _width > other.Position.X
-                && _position.Y < other.Position.Y + other.Height
-                && _position.Y + _height > other.Position.Y);
+            return (x >= Position.X && x < Position.X + Width &&
+                    y >= Position.Y && y < Position.Y + Height);
         }
+    }
 }
