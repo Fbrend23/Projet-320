@@ -82,7 +82,7 @@ namespace Projet_320
                             }
                         }
                         else // Sinon, le joueur 2 tire et le projectile doit toucher le joueur 1
-                        {
+                   
                             if (_joueur1.HitBox.isTouched(proj.Position.X, proj.Position.Y))
                             {
                                 proj._isActive = false;       // Désactive le projectile
@@ -90,9 +90,6 @@ namespace Projet_320
                                 Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
                                 Console.Write(" ");
                             }
-                        }
-                    }
-
                         else
                         {
                             _projectiles.Remove(proj);
