@@ -21,28 +21,11 @@ namespace Projet_320
         private double _time;
         private double _initialVelocity;
         private const double _gravity = 9.81;
-        private int _prevX = -1;
-        private int _prevY = -1;
+        private const int _prevX = -1;
+        private const int _prevY = -1;
         private bool _isActive;
 
 
-        /// <summary>
-        /// Constructeur
-        /// </summary>
-        /// <param name="angle"></param>
-        /// <param name="power"></param>
-        /// <param name="position"></param>
-        /// <param name="isActive"></param>
-        /// <param name="time"></param>
-        public Projectile(int angle, int power, Position position, bool isActive, double time)
-        {
-            _angle = angle;
-            _power = power;
-            _position = position;
-           _isActive = isActive;
-            _time = time;
-            _initialVelocity = power / 6 ;
-        }
 
         public int Angle
         {
@@ -68,6 +51,23 @@ namespace Projet_320
             set { _isActive = value; }
         }
 
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="angle"></param>
+        /// <param name="power"></param>
+        /// <param name="position"></param>
+        /// <param name="isActive"></param>
+        /// <param name="time"></param>
+        public Projectile(int angle, int power, Position position, bool isActive, double time)
+        {
+            _angle = angle;
+            _power = power;
+            _position = position;
+           _isActive = isActive;
+            _time = time;
+            _initialVelocity = power / 6 ;
+        }
 
         /// <summary>
         /// Met à jour la position du projectile en fonction du temps écoulé.
