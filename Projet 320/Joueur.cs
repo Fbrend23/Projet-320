@@ -12,6 +12,7 @@ namespace Projet_320
         /// <summary>
         /// 
         /// </summary>
+       
         //*********** Propriétés ***********//
         private string _nom;
         private bool _IsTurnActive;

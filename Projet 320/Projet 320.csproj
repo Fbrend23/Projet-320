@@ -46,7 +46,6 @@
     <Compile Include="Config.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Hitbox.cs" />
-    <Compile Include="Hitboxes.cs" />
     <Compile Include="Interface tir.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Position.cs" />

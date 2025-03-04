@@ -17,7 +17,7 @@ namespace Projet_320
         private Interface_tir _interfaceTirJ1;
         private Interface_tir _interfaceTirJ2;
         private List<Projectile> _projectiles;
-
+        private bool collisionDetected;
         private bool _isPlayer1Turn = true;
 
         public Game() 
@@ -61,44 +61,61 @@ namespace Projet_320
                 // Animation du tir : mettre à jour et afficher les projectiles
                 while (_projectiles.Count > 0)
                 {
-                    // Pour éviter les modifications de la liste pendant l'itération, on parcourt une copie
+                    // Parcourir une copie de la liste pour éviter de modifier la liste pendant l'itération
                     foreach (var proj in new List<Projectile>(_projectiles))
                     {
-                        if (proj._isActive)
+                        if (proj.IsActive)
                         {
-                            proj.UpdateProjectile(0.05); // On simule 0,1 seconde d'écoulement
+                            proj.UpdateProjectile(0.05); // Simule 0,05 seconde d'écoulement
                             proj.DisplayProjectile();
-                        }
 
-                        if (_isPlayer1Turn)
-                        {
-                            if (_joueur2.HitBox.isTouched(proj.Position.X, proj.Position.Y))
+                            // Vérifier la collision avec le joueur adverse selon le tour actuel
+                            collisionDetected = false;
+                            if (_isPlayer1Turn)
                             {
-                                proj._isActive = false;       // Désactive le projectile
-                                _joueur2.TakeDamage(1);         // Inflige un dégât au joueur 2
-                                                                // Optionnel : effacer l'affichage du projectile
-                                Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
-                                Console.Write(" ");
+                                // Si c'est le tour du joueur 1, le projectile vise le joueur 2
+                                if (_joueur2.HitBox.isTouched(proj.Position.X, proj.Position.Y))
+                                {
+                                    collisionDetected = true;
+                                    proj.IsActive = false;
+
+
+                                    // Effacer l'affichage du projectile
+                                    Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
+                                    Console.Write(" ");
+                                }
+                            }
+                            else
+                            {
+                                // Si c'est le tour du joueur 2, le projectile vise le joueur 1
+                                if (_joueur1.HitBox.isTouched(proj.Position.X, proj.Position.Y))
+                                {
+                                    collisionDetected = true;
+                                    proj.IsActive = false;
+
+
+                                    // Effacer l'affichage du projectile
+                                    Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
+                                    Console.Write(" ");
+                                }
+                            }
+
+                            // Si le projectile n'est plus actif (collision ou hors écran), on le retire de la liste
+                            if (!proj.IsActive)
+                            {
+                                _projectiles.Remove(proj);
                             }
                         }
-                        else // Sinon, le joueur 2 tire et le projectile doit toucher le joueur 1
-                   
-                            if (_joueur1.HitBox.isTouched(proj.Position.X, proj.Position.Y))
-                            {
-                                proj._isActive = false;       // Désactive le projectile
-                                                             //Ajouter dégats
-                                Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
-                                Console.Write(" ");
-                            }
                         else
                         {
                             _projectiles.Remove(proj);
                         }
                     }
-                    Thread.Sleep(100); // Pause pour l'animation
+                    Thread.Sleep(100); // Pause pour laisser le temps à l'animation de se dérouler
                 }
-                // Alterner le tour
+                // Changement de joueur
                 _isPlayer1Turn = !_isPlayer1Turn;
+
             }
         }  
     }

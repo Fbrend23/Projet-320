@@ -12,3 +12,10 @@ E:\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.csproj.AssemblyRe
 E:\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.csproj.CoreCompileInputs.cache
 E:\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.exe
 E:\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.pdb
+C:\Users\pl76tup\Desktop\Projet 320\Projet 320\obj\Debug\Projet 320.csproj.AssemblyReference.cache
+C:\Users\pl76tup\Desktop\Projet 320\Projet 320\obj\Debug\Projet 320.csproj.CoreCompileInputs.cache
+C:\Users\pl76tup\Desktop\Projet 320\Projet 320\bin\Debug\Projet 320.exe.config
+C:\Users\pl76tup\Desktop\Projet 320\Projet 320\bin\Debug\Projet 320.exe
+C:\Users\pl76tup\Desktop\Projet 320\Projet 320\bin\Debug\Projet 320.pdb
+C:\Users\pl76tup\Desktop\Projet 320\Projet 320\obj\Debug\Projet 320.exe
+C:\Users\pl76tup\Desktop\Projet 320\Projet 320\obj\Debug\Projet 320.pdb

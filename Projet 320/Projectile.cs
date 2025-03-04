@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,16 +14,16 @@ namespace Projet_320
         /// </summary>
 
         //*********** Propriétés ***********//
-        public int _angle;
-        public int _power;
-        public Position _position;
+        private int _angle;
+        private int _power;
+        private Position _position;
         private string _projectile;
         private double _time;
         private double _initialVelocity;
-        public bool _isActive;
         private const double _gravity = 9.81;
         private int _prevX = -1;
         private int _prevY = -1;
+        private bool _isActive;
 
 
         /// <summary>
@@ -52,6 +53,21 @@ namespace Projet_320
         {
             get { return _power; }
         }
+
+
+        public Position Position
+        {
+            get { return _position; }
+            set { _position = value; }
+        }
+
+
+        public bool IsActive
+        {
+            get { return _isActive; }
+            set { _isActive = value; }
+        }
+
 
         /// <summary>
         /// Met à jour la position du projectile en fonction du temps écoulé.
