@@ -63,6 +63,11 @@ namespace Projet_320
             }
         }
 
+
+        /// <summary>
+        /// Gestion des dégats subis
+        /// </summary>
+        /// <returns></returns>
         public int TakeDamage()
         {
             _vie -= 1;
