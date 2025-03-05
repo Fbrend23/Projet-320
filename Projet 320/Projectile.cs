@@ -17,12 +17,12 @@ namespace Projet_320
         private int _angle;
         private int _power;
         private Position _position;
-        private string _projectile;
+        private char _projectileChar;
         private double _time;
         private double _initialVelocity;
         private const double _gravity = 9.81;
-        private const int _prevX = -1;
-        private const int _prevY = -1;
+        private int _prevX = -1;
+        private int _prevY = -1;
         private bool _isActive;
 
 
@@ -51,6 +51,7 @@ namespace Projet_320
             set { _isActive = value; }
         }
 
+
         /// <summary>
         /// Constructeur
         /// </summary>
@@ -64,9 +65,10 @@ namespace Projet_320
             _angle = angle;
             _power = power;
             _position = position;
-           _isActive = isActive;
+            _isActive = isActive;
             _time = time;
             _initialVelocity = power / 6 ;
+            _projectileChar = 'x';
         }
 
         /// <summary>
@@ -111,7 +113,7 @@ namespace Projet_320
                 try
                 {
                     Console.SetCursorPosition(_position.X, _position.Y);
-                    Console.Write("x");
+                    Console.Write(_projectileChar);
                     _prevX = _position.X;
                     _prevY = _position.Y;
                 }
