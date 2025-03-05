@@ -62,5 +62,11 @@ namespace Projet_320
                 Console.SetCursorPosition(_position.X, Config.SCREEN_HEIGHT - _position.Y + i);
             }
         }
+
+        public int TakeDamage()
+        {
+            _vie -= 1;
+            return _vie;
+        }
     }
 }

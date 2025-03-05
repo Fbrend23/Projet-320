@@ -17,7 +17,7 @@ namespace Projet_320
         private Interface_tir _interfaceTirJ1;
         private Interface_tir _interfaceTirJ2;
         private List<Projectile> _projectiles;
-        private bool collisionDetected;
+        private bool _collisionDetected;
         private bool _isPlayer1Turn = true;
 
         public Game() 
@@ -70,13 +70,14 @@ namespace Projet_320
                             proj.DisplayProjectile();
 
                             // Vérifier la collision avec le joueur adverse selon le tour actuel
-                            collisionDetected = false;
+                            _collisionDetected = false;
                             if (_isPlayer1Turn)
                             {
                                 // Si c'est le tour du joueur 1, le projectile vise le joueur 2
                                 if (_joueur2.HitBox.isTouched(proj.Position.X, proj.Position.Y))
                                 {
-                                    collisionDetected = true;
+                                    _collisionDetected = true;
+                                    _joueur2.TakeDamage();
                                     proj.IsActive = false;
 
 
@@ -90,7 +91,8 @@ namespace Projet_320
                                 // Si c'est le tour du joueur 2, le projectile vise le joueur 1
                                 if (_joueur1.HitBox.isTouched(proj.Position.X, proj.Position.Y))
                                 {
-                                    collisionDetected = true;
+                                    _collisionDetected = true;
+                                    _joueur2.TakeDamage();
                                     proj.IsActive = false;
 
 
