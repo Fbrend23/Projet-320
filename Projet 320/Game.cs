@@ -22,8 +22,8 @@ namespace Projet_320
         private Joueur _joueur2;
         private Tour _tour1;
         private Tour _tour2;
-        private Interface_tir _interfaceTirJ1;
-        private Interface_tir _interfaceTirJ2;
+        private GestionnaireTir _interfaceTirJ1;
+        private GestionnaireTir _interfaceTirJ2;
         private List<Projectile> _projectiles;
         private bool _collisionDetected;
         private bool _isPlayer1Turn = true;
@@ -35,8 +35,8 @@ namespace Projet_320
         _joueur2 = new Joueur("J2", false, 3, new Position(Config.SCREEN_WIDTH - 10, 10));
         _tour1 = new Tour(3, 5, new Position(20, Config.SCREEN_HEIGHT - 12));
         _tour2 = new Tour(3, 5, new Position(Config.SCREEN_WIDTH - 20, Config.SCREEN_HEIGHT - 12));
-        _interfaceTirJ1 = new Interface_tir(new Position(12, Config.SCREEN_HEIGHT - 12), false);
-        _interfaceTirJ2 = new Interface_tir(new Position(Config.SCREEN_WIDTH - 10, Config.SCREEN_HEIGHT - 12),true);
+        _interfaceTirJ1 = new GestionnaireTir(new Position(12, Config.SCREEN_HEIGHT - 12), false);
+        _interfaceTirJ2 = new GestionnaireTir(new Position(Config.SCREEN_WIDTH - 10, Config.SCREEN_HEIGHT - 12),true);
         _projectiles = new List<Projectile>();       
         }
         public void RunGame()

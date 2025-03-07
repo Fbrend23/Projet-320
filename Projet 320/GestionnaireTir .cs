@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Projet_320
 {
-    internal class Interface_tir
+    internal class GestionnaireTir
     {
         //*********** Attributs ***********//
         private int _angleMin;              //Angle de tir min
@@ -51,7 +51,7 @@ namespace Projet_320
         /// Constructeur
         /// </summary>
         /// <param name="position"></param>
-        public Interface_tir(Position position, bool mirror)
+        public GestionnaireTir(Position position, bool mirror)
         {
             _position = position;
             _mirror = mirror;
