@@ -15,5 +15,45 @@ namespace Projet_320
 {
     internal class Score
     {
+		private int _vie;
+		private Position _position;
+        private string[] _score;
+        private Joueur _joueur;
+        private string _nomJoueur;
+		public int Vie
+		{
+			get { return _vie; }
+			set { _vie = value; }
+		}
+
+        public Score(Position position, Joueur joueur)
+        {
+            _vie = joueur.Vie;
+            _position = position;
+            _joueur = joueur;
+            _nomJoueur = joueur.Nom;
+        }
+
+       public void DisplayScore()
+        {
+            _nomJoueur = _joueur.Nom.PadRight(20);
+            string _coeur = new string('♥', _vie).PadRight(20);
+            _score = new string[]
+            {
+               "╔══════════════════════╗",
+              $"║ {_nomJoueur} ║",
+              $"║ {_coeur} ║",
+               "╚══════════════════════╝"
+            };
+
+            //Affiche le score
+            for (int i = 0; i < _score.Length; i++)
+            {
+                Console.SetCursorPosition(_position.X, _position.Y + i);
+                Console.WriteLine(_score[i]);
+            }
+        }
+
+
     }
 }

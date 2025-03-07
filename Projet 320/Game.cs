@@ -27,6 +27,8 @@ namespace Projet_320
         private List<Projectile> _projectiles;
         private bool _collisionDetected;
         private bool _isPlayer1Turn = true;
+        private Score _scoreJ1;
+        private Score _scoreJ2;
 
         public Game() 
         { 
@@ -37,7 +39,9 @@ namespace Projet_320
         _tour2 = new Tour(3, 5, new Position(Config.SCREEN_WIDTH - 20, Config.SCREEN_HEIGHT - 12));
         _interfaceTirJ1 = new GestionnaireTir(new Position(12, Config.SCREEN_HEIGHT - 12), false);
         _interfaceTirJ2 = new GestionnaireTir(new Position(Config.SCREEN_WIDTH - 10, Config.SCREEN_HEIGHT - 12),true);
-        _projectiles = new List<Projectile>();       
+        _projectiles = new List<Projectile>();
+        _scoreJ1 = new Score(new Position(10,3),_joueur1);
+        _scoreJ2 = new Score(new Position(Config.SCREEN_WIDTH - 50, 3), _joueur2);
         }
         public void RunGame()
         {
@@ -46,8 +50,10 @@ namespace Projet_320
             // Afficher les éléments du jeu
             _joueur1.AffichageJoueur();
             _tour1.AffichageTour();
+            _scoreJ1.DisplayScore();
             _joueur2.AffichageJoueur();
             _tour2.AffichageTour();
+            _scoreJ2.DisplayScore();
 
             while (true)
             {

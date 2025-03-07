@@ -32,7 +32,17 @@ namespace Projet_320
             @"/|\",
             @"/ \",
         };
-       
+
+
+        public string Nom
+        {
+            get { return _nom; }
+        }
+        public int Vie
+        {
+            get { return _vie; }
+        }
+
         public Hitbox HitBox
         {
             get { return _hitbox; }

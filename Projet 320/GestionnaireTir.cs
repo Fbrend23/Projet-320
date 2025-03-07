@@ -170,7 +170,7 @@ namespace Projet_320
             {
 
                 // Positionner le curseur sur la ligne d'affichage de la barre 
-                Console.SetCursorPosition(2, 4);
+                Console.SetCursorPosition(10, 8);
                 // Calculer le nombre de caractères à remplir en fonction de la puissance actuelle
                 int filled = (int)((double)power / _powerMax * barWidth);
                 // Construire la barre : encadrée par [ et ], remplie par '■' et des espaces pour le reste
