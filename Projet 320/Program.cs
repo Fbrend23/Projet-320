@@ -18,12 +18,7 @@ namespace Projet_320
     {
         static void Main()
         {
-        //Initilialisation de la configuration
-        Console.SetWindowSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
-        Console.CursorVisible = false;
-       
         Game game = new Game();
-
         game.RunGame();
 
         }

@@ -30,6 +30,7 @@ namespace Projet_320
 
         public Game() 
         { 
+        //Création des objets
         _joueur1 = new Joueur("J1", true, 3, new Position(10, 10));
         _joueur2 = new Joueur("J2", false, 3, new Position(Config.SCREEN_WIDTH - 10, 10));
         _tour1 = new Tour(3, 5, new Position(20, Config.SCREEN_HEIGHT - 12));
@@ -40,6 +41,8 @@ namespace Projet_320
         }
         public void RunGame()
         {
+            Config.ConfigJeu();
+
             // Afficher les éléments du jeu
             _joueur1.AffichageJoueur();
             _tour1.AffichageTour();

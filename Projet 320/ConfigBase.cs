@@ -6,28 +6,11 @@
 // Module: 320                                                
 ////////////////////////////////////////////////////////////////
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
 namespace Projet_320
 {
-    static internal class Config
+    internal class ConfigBase
     {
-        public const int SCREEN_HEIGHT = 40;
-        public const int SCREEN_WIDTH = 150;
-
-
-       static public void ConfigJeu()
-        {
-            Console.SetWindowSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
-            Console.CursorVisible = false;
-        }
-
+        private const int _SCREEN_HEIGHT = 40;
+        private const int _SCREEN_WIDTH = 150;
     }
-
-   
 }
