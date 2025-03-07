@@ -1,4 +1,12 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////
+// ETML                                                       
+// Auteur: Brendan Fleurdelys                                
+// Date: 17.01.2025                                           
+// Description: Moteur du jeu, initialise tous les objets et gère la partie.
+// Module: 320                                                
+////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

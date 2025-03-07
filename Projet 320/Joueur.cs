@@ -1,4 +1,11 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////
+// ETML                                                       
+// Auteur: Brendan Fleurdelys                                
+// Date: 17.01.2025                                           
+// Description: Représente les joueurs avec leur nombre de vies, position et leur hitbox 
+// Module: 320                                                
+////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;

@@ -1,4 +1,12 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////
+// ETML                                                       
+// Auteur: Brendan Fleurdelys                                
+// Date: 17.01.2025                                           
+// Description: Représente l'interface de tir du jeu.
+// Permet d'intéragir et d'afficher graphiquement l'arc pour l'angle de tir ainsi que la barre de puissance
+// Module: 320                                                
+////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

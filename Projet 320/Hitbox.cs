@@ -1,4 +1,11 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////
+// ETML                                                       
+// Auteur: Brendan Fleurdelys                                
+// Date: 17.01.2025                                           
+// Description:Permet de gérer les collisions en représentant un rectangle depuis une position. 
+// Module: 320                                                
+////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

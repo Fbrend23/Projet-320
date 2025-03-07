@@ -1,4 +1,11 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////
+// ETML                                                       
+// Auteur: Brendan Fleurdelys                                
+// Date: 17.01.2025                                           
+// Description: Représente les tours avec leur position, leur hitbox et les dégats
+// Module: 320                                                
+////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime;

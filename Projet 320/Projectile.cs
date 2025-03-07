@@ -1,4 +1,12 @@
-﻿using System;
+﻿////////////////////////////////////////////////////////////////
+// ETML                                                       
+// Auteur: Brendan Fleurdelys                                
+// Date: 17.01.2025                                           
+// Description: Représente un projectile lancé par le joueur
+// Contient les paramètres de tir (Puissance, angle) et calcul sa trajectoire
+// Module: 320                                                
+////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime;
