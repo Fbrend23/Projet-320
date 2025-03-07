@@ -50,13 +50,13 @@ namespace Projet_320
             // Afficher les éléments du jeu
             _joueur1.AffichageJoueur();
             _tour1.AffichageTour();
-            _scoreJ1.DisplayScore();
             _joueur2.AffichageJoueur();
             _tour2.AffichageTour();
-            _scoreJ2.DisplayScore();
 
             while (true)
             {
+            _scoreJ1.DisplayScore();
+            _scoreJ2.DisplayScore();
                 // Selon le tour, afficher l'interface de tir correspondante
                 if (_isPlayer1Turn)
                 {

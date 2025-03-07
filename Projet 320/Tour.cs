@@ -16,13 +16,19 @@ namespace Projet_320
 {
     internal class Tour
     {
-        //*********** Propriétés ***********//
 
+        /// <summary>
+        /// 
+        /// </summary>
         private string _bloc = "█";     //Block représentant la tour
         private Position _position;
         private int _largeur;           //Largeur de la tour
         private int _hauteur;           //Hauteur de la tour
         private string[,] _tourArray;   //Tableau pour la tour
+
+        /// <summary>
+        /// 
+        /// </summary>
         private Hitbox _hitbox;
 
         public Hitbox Hitbox
