@@ -51,6 +51,16 @@ namespace Projet_320
             set { _isActive = value; }
         }
 
+        public int PrevX
+        {
+            get { return _prevX; }
+        }
+
+        public int PrevY
+        {
+            get { return _prevY; }
+        }
+        
 
         /// <summary>
         /// Constructeur
