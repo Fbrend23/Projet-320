@@ -2,10 +2,9 @@
 // ETML                                                       
 // Auteur: Brendan Fleurdelys                                
 // Date: 17.01.2025                                           
-// Description: Moteur du jeu, initialise tous les objets et gère la partie.
+// Description: Gère le moteur du jeu, initialise tous les objets et contrôle la partie
 // Module: 320                                                
 ////////////////////////////////////////////////////////////////
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,36 +14,94 @@ using System.Threading.Tasks;
 
 namespace Projet_320
 {
+    /// <summary>
+    /// Gère l'initialisation des objets du jeu et orchestre la boucle principale
+    /// Assure la gestion des tours des joueurs, des tirs et des collisions
+    /// </summary>
     internal class Game
     {
-        // Objets du jeu
+        //*********** Attributs ***********//
+
+        /// <summary>
+        /// Représente le premier joueur
+        /// </summary>
         private Joueur _joueur1;
+
+        /// <summary>
+        /// Représente le deuxième joueur
+        /// </summary>
         private Joueur _joueur2;
+
+        /// <summary>
+        /// Représente la tour du premier joueur
+        /// </summary>
         private Tour _tour1;
+
+        /// <summary>
+        /// Représente la tour du deuxième joueur
+        /// </summary>
         private Tour _tour2;
+
+        /// <summary>
+        /// Gère l'interface de tir pour le premier joueur
+        /// </summary>
         private GestionnaireTir _interfaceTirJ1;
+
+        /// <summary>
+        /// Gère l'interface de tir pour le deuxième joueur
+        /// </summary>
         private GestionnaireTir _interfaceTirJ2;
+
+        /// <summary>
+        /// Contient les projectiles actuellement en jeu
+        /// </summary>
         private List<Projectile> _projectiles;
+
+        /// <summary>
+        /// Indique si une collision a été détectée
+        /// </summary>
         private bool _collisionDetected;
+
+        /// <summary>
+        /// Détermine quel joueur est en train de jouer
+        /// </summary>
         private bool _isPlayer1Turn = true;
+
+        /// <summary>
+        /// Représente le score du premier joueur
+        /// </summary>
         private Score _scoreJ1;
+
+        /// <summary>
+        /// Représente le score du deuxième joueur
+        /// </summary>
         private Score _scoreJ2;
 
+        /// <summary>
+        /// Initialise tous les objets nécessaires au jeu
+        /// Configure les joueurs, les tours, les interfaces de tir et le score
+        /// </summary>
         public Game() 
         { 
-        //Création des objets
-        _joueur1 = new Joueur("J1", true, 3, new Position(10, 10));
-        _joueur2 = new Joueur("J2", false, 3, new Position(Config.SCREEN_WIDTH - 10, 10));
-        _tour1 = new Tour(3, 5, new Position(20, Config.SCREEN_HEIGHT - 12));
-        _tour2 = new Tour(3, 5, new Position(Config.SCREEN_WIDTH - 20, Config.SCREEN_HEIGHT - 12));
-        _interfaceTirJ1 = new GestionnaireTir(new Position(12, Config.SCREEN_HEIGHT - 12), false);
-        _interfaceTirJ2 = new GestionnaireTir(new Position(Config.SCREEN_WIDTH - 10, Config.SCREEN_HEIGHT - 12),true);
-        _projectiles = new List<Projectile>();
-        _scoreJ1 = new Score(new Position(10,3),_joueur1);
-        _scoreJ2 = new Score(new Position(Config.SCREEN_WIDTH - 50, 3), _joueur2);
+            //Création des objets
+            _joueur1 = new Joueur("J1", true, 3, new Position(10, 10));
+            _joueur2 = new Joueur("J2", false, 3, new Position(Config.SCREEN_WIDTH - 10, 10));
+            _tour1 = new Tour(3, 5, new Position(20, Config.SCREEN_HEIGHT - 12));
+            _tour2 = new Tour(3, 5, new Position(Config.SCREEN_WIDTH - 20, Config.SCREEN_HEIGHT - 12));
+            _interfaceTirJ1 = new GestionnaireTir(new Position(12, Config.SCREEN_HEIGHT - 12), false);
+            _interfaceTirJ2 = new GestionnaireTir(new Position(Config.SCREEN_WIDTH - 10, Config.SCREEN_HEIGHT - 12),true);
+            _projectiles = new List<Projectile>();
+            _scoreJ1 = new Score(new Position(10,3),_joueur1);
+            _scoreJ2 = new Score(new Position(Config.SCREEN_WIDTH - 50, 3), _joueur2);
         }
+
+        /// <summary>
+        /// Démarre la boucle du jeu et gère l'enchaînement des tours
+        /// Affiche les éléments du jeu, gère les tirs et détecte les collisions
+        /// </summary>
         public void RunGame()
         {
+            // Configure la console pour le jeu
             Config.ConfigJeu();
 
             // Afficher les éléments du jeu
@@ -55,14 +112,15 @@ namespace Projet_320
 
             while (true)
             {
-            _scoreJ1.DisplayScore();
-            _scoreJ2.DisplayScore();
-                // Selon le tour, afficher l'interface de tir correspondante
+                // Affiche les scores à chaque début de tour
+                _scoreJ1.DisplayScore();
+                _scoreJ2.DisplayScore();
+
+                // Détermine quel joueur joue et gère son tir
                 if (_isPlayer1Turn)
                 {
                     int angle = _interfaceTirJ1.SelectAngle();
                     int power = _interfaceTirJ1.SelectPower();
-                    // Créer le projectile à partir de la position de départ 
                     Projectile projectile = new Projectile(angle, power, new Position(12, Config.SCREEN_HEIGHT - 12), true, 0);
                     _projectiles.Add(projectile);
                 }
@@ -70,12 +128,11 @@ namespace Projet_320
                 {
                     int angle = _interfaceTirJ2.SelectAngle();
                     int power = _interfaceTirJ2.SelectPower();
-                    // Position de départ pour le projectile du joueur 2 (en miroir)
                     Projectile projectile = new Projectile(angle, power, new Position(Config.SCREEN_WIDTH - 12, Config.SCREEN_HEIGHT - 12), true, 0);
                     _projectiles.Add(projectile);
                 }
 
-                // Animation du tir : mettre à jour et afficher les projectiles
+                // Anime le projectile jusqu'à sa fin de vie
                 while (_projectiles.Count > 0)
                 {
                     // Parcourir une copie de la liste pour éviter de modifier la liste pendant l'itération
@@ -98,7 +155,7 @@ namespace Projet_320
                                     proj.IsActive = false;
 
 
-                                    // Effacer l'affichage du projectile
+                                    // Efface l'affichage du projectile
                                     Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
                                     Console.Write(" ");
                                 }
@@ -119,18 +176,14 @@ namespace Projet_320
                                 }
                             }
 
-                            // Si le projectile n'est plus actif (collision ou hors écran), on le retire de la liste
+                            // Si le projectile n'est plus actif (collision ou hors écran) on le supprime de la liste
                             if (!proj.IsActive)
                             {
                                 _projectiles.Remove(proj);
                             }
                         }
-                        else
-                        {
-                            _projectiles.Remove(proj);
-                        }
                     }
-                    Thread.Sleep(100); // Pause pour laisser le temps à l'animation de se dérouler
+                    Thread.Sleep(100); // Attend pour permettre l'animation
                 }
                 // Changement de joueur
                 _isPlayer1Turn = !_isPlayer1Turn;

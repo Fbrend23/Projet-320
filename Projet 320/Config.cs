@@ -3,6 +3,7 @@
 // Auteur: Brendan Fleurdelys                                
 // Date: 17.01.2025                                           
 // Description: Configuration des paramêtres du jeu tels que la résolution de la console
+// Définit la hauteur et la largeur de la fenêtre ainsi que d'autres paramètres généraux du jeu
 // Module: 320                                                
 ////////////////////////////////////////////////////////////////
 
@@ -15,13 +16,28 @@ using System.Threading.Tasks;
 
 namespace Projet_320
 {
+    /// <summary>
+    /// Contient les paramètres globaux du jeu
+    /// Définit la taille de la fenêtre de la console et d'autres réglages
     static internal class Config
     {
+        //*********** Constantes ***********//
+
+        /// <summary>
+        /// Hauteur de la fenêtre de la console
+        /// </summary>
         public const int SCREEN_HEIGHT = 40;
+
+        /// <summary>
+        /// Largeur de la fenêtre de la console
+        /// </summary>
         public const int SCREEN_WIDTH = 150;
 
-
-       static public void ConfigJeu()
+        /// <summary>
+        /// Configure les paramètres de la console au démarrage du jeu
+        /// Définit la taille de la fenêtre et masque le curseur
+        /// </summary>
+        static public void ConfigJeu()
         {
             Console.SetWindowSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
             Console.CursorVisible = false;

@@ -2,10 +2,10 @@
 // ETML                                                       
 // Auteur: Brendan Fleurdelys                                
 // Date: 17.01.2025                                           
-// Description: Représente l'interface de tir du jeu.
-// Permet d'intéragir et d'afficher graphiquement l'arc pour l'angle de tir ainsi que la barre de puissance
+// Description: Gère le système de tir, y compris la sélection de l'angle et de la puissance
 // Module: 320                                                
 ////////////////////////////////////////////////////////////////
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,23 +15,76 @@ using System.Threading.Tasks;
 
 namespace Projet_320
 {
+    /// <summary>
+    /// Gère le système de tir du jeu
+    /// Permet aux joueurs de choisir un angle et une puissance via une interface en console
+    /// Affiche graphiquement l'arc de visée et la barre de puissance
+    /// </summary>
     internal class GestionnaireTir
     {
         //*********** Attributs ***********//
-        private int _angleMin;              //Angle de tir min
-        private int _angleMax;              //Angle de tir max
-        private int _powerMin = 0;          //Puissance de tir min
-        private int _powerMax = 100;        //Puissance de tir max
-        private string _shootPoint = "·";   //Caractère de l'interface
-        private Position _position;         //Position de l'interface
-        private int _angle;                 //Angle de tir
-        private int power;                  //Puissance de tir
-        private int _prevX = -1;            //Position X précédente
-        private int _prevY = -1;            //Position Y précédente
+
+        /// <summary>
+        /// Angle minimum sélectionnable pour le tir
+        /// </summary>
+        private int _angleMin;
+
+        /// <summary>
+        /// Angle maximum sélectionnable pour le tir
+        /// </summary>
+        private int _angleMax;
+
+        /// <summary>
+        /// Puissance minimale du tir
+        /// </summary>
+        private int _powerMin = 0;
+
+        /// <summary>
+        /// Puissance maximale du tir
+        /// </summary>
+        private int _powerMax = 100;
+
+        /// <summary>
+        /// Caractère représentant le point de visée sur l'arc
+        /// </summary>
+        private string _shootPoint = "·";
+
+        /// <summary>
+        /// Position de l'interface de tir dans la console
+        /// </summary>
+        private Position _position;
+
+        /// <summary>
+        /// Angle actuellement sélectionné pour le tir
+        /// </summary>
+        private int _angle;
+
+        /// <summary>
+        /// Puissance actuellement sélectionnée pour le tir
+        /// </summary>
+        private int power;
+
+        /// <summary>
+        /// Position X précédente du point de visée pour effacer son ancien affichage
+        /// </summary>
+        private int _prevX = -1;
+
+        /// <summary>
+        /// Position Y précédente du point de visée pour effacer son ancien affichage
+        /// </summary>
+        private int _prevY = -1;
+
+        /// <summary>
+        /// Indique si l'interface doit être en mode miroir pour le joueur 2
+        /// </summary>
         private bool _mirror;
 
 
         //*********** Propriétés ***********//
+
+        /// <summary>
+        /// Retourne l'angle actuellement sélectionné
+        /// </summary>
         public int Angle
         {
             get
@@ -40,6 +93,9 @@ namespace Projet_320
             }
         }
 
+        /// <summary>
+        /// Retourne la puissance actuellement sélectionnée
+        /// </summary>
         public int Power
         {
             get
@@ -47,10 +103,15 @@ namespace Projet_320
                 return power;
             }
         }
+
+        //*********** Constructeur ***********//
+
         /// <summary>
-        /// Constructeur
+        /// Constructeur du gestionnaire de tir
+        /// Initialise l'interface et ajuste les angles en fonction du joueur
         /// </summary>
-        /// <param name="position"></param>
+        /// <param name="position">Position de l'interface dans la console</param>
+        /// <param name="mirror">Indique si l'interface doit être inversée pour le joueur 2</param>
         public GestionnaireTir(Position position, bool mirror)
         {
             _position = position;
@@ -68,12 +129,14 @@ namespace Projet_320
                 _angleMax = 90;
             }
         }
-   
+
+        //*********** Méthodes ***********//
 
         /// <summary>
-        /// Calcul de l'angle de tir
+        /// Gère la sélection de l'angle de tir par le joueur
+        /// Le joueur doit appuyer sur [Espace] pour valider son choix
         /// </summary>
-        /// <returns>int angle</returns>
+        /// <returns>L'angle de tir sélectionné</returns>
         public int SelectAngle() 
         {
             int angle = _angleMin;
@@ -81,30 +144,25 @@ namespace Projet_320
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("Sélection de l'angle (Appuie sur [Espace] pour valider) :               "); // Beaucoup d'espace pour effacer le message de puissance
 
-
             while (true)
             {
                 Console.SetCursorPosition(0, 1);
-                // Affichage de l'angle pour test
-                //Console.Write($"Angle : {angle}° ");
-
                 // Affichage de l'arc avec l'angle courant passé en paramètre
-                
                 TirDisplay(angle);
 
                 // Attendre un peu pour un mouvement fluide
                 Thread.Sleep(150);
 
-                // Changer l'angle
+                // Modifier l'angle dans la direction actuelle
                 angle = angle + (direction * 5);
 
-                // Changer la direction si on atteint les limites
+                // Change la direction si on atteint les limites
                 if (angle >= _angleMax || angle <= _angleMin) 
                 {
                     direction = direction * (-1);
                 }
 
-                // Lire la touche de l'utilisateur
+                // Lis la touche de l'utilisateur pour valider l'angle
                 if (Console.KeyAvailable)
                 {
                     ConsoleKey key = Console.ReadKey(true).Key;
@@ -113,14 +171,16 @@ namespace Projet_320
                         break;
                     }
                 }
-
             }
             return angle ;
         }
+
+
         /// <summary>
-        /// Affiche les points pour les angles
+        /// Affiche l'arc de sélection de l'angle en console
+        /// Efface également l'affichage précédent pour éviter un effet de traînée
         /// </summary>
-        /// <param name="currentAngle"></param>
+        /// <param name="currentAngle">Angle actuellement sélectionné</param>
         public void TirDisplay(int currentAngle)
         {
             _angle = currentAngle;
@@ -139,7 +199,7 @@ namespace Projet_320
                 Console.Write(" ");
             }
 
-            // Affiche le nouveau point en surbrillance
+            // Affiche le nouveau point en rouge
             Console.SetCursorPosition(x, y);
             Console.ForegroundColor = ConsoleColor.Red;
             Console.Write(_shootPoint);
@@ -148,21 +208,21 @@ namespace Projet_320
             //Mémorise la position actuelle
             _prevX = x;
             _prevY = y;
-
-        
-            
         }
 
 
         /// <summary>
-        /// Gère la puissance de tir et de son affichage
+        /// Gère la sélection de la puissance de tir du joueur
+        /// Affiche une barre de progression qui se remplit automatiquement
+        /// Le joueur doit appuyer sur [Espace] pour valider son choix
         /// </summary>
-        /// <returns></returns>
+        /// <returns>La puissance de tir sélectionnée</returns>
         public int SelectPower()
         {
-            int barWidth = 20;
-            power = _powerMin;
-            // Affichage de l'instruction sur une ligne dédiée
+            int barWidth = 20; // Largeur de la barre de progression
+            power = _powerMin; // Puissance de départ
+
+            // Affichage de l'instruction
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("Sélection de la puissance (Appuie sur [Espace] pour valider) : ");
 
@@ -171,28 +231,27 @@ namespace Projet_320
 
                 // Positionner le curseur sur la ligne d'affichage de la barre 
                 Console.SetCursorPosition(10, 8);
-                // Calculer le nombre de caractères à remplir en fonction de la puissance actuelle
+
+                // Construis la barre de progression
                 int filled = (int)((double)power / _powerMax * barWidth);
-                // Construire la barre : encadrée par [ et ], remplie par '■' et des espaces pour le reste
                 string bar = "[" + new string('■', filled) + new string(' ', barWidth - filled) + "]";
+
                 // Afficher la barre et le pourcentage de puissance
                 Console.Write(bar + " " + power + "%   ");
-                // Petite pause pour animer le remplissage
-                Thread.Sleep(100);
-                // Augmenter la puissance progressivement
-                power += 5;
+                Thread.Sleep(100);                 // Pause pour l'animation
 
+                // Augmente la puissance progressivement
+                power += 5;
                 if (power > _powerMax)
                 {
                     power = _powerMax;
                 }
+
                 //Retourne à 0 si le joueur n'a pas appuyer sur espace
                 if (power == _powerMax) 
                 {
                   power = _powerMin;
                 }
-
-
 
                 // Vérifier si l'utilisateur appuie sur Espace
                 if (Console.KeyAvailable)

@@ -2,7 +2,7 @@
 // ETML                                                       
 // Auteur: Brendan Fleurdelys                                
 // Date: 17.01.2025                                           
-// Description: Permet l'affichage du score selon les joueurs touchés
+// Description: Gère l'affichage du score en fonction des joueurs et de leurs vies restantes
 // Module: 320                                                
 ////////////////////////////////////////////////////////////////
 using System;
@@ -13,19 +13,59 @@ using System.Threading.Tasks;
 
 namespace Projet_320
 {
+    /// <summary>
+    /// Affiche et met à jour le score des joueurs
+    /// Utilise la position du joueur et affiche visuellement le nombre de vies restantes
+    /// </summary>
     internal class Score
     {
-		private int _vie;
-		private Position _position;
-        private string[] _score;
-        private Joueur _joueur;
-        private string _nomJoueur;
-		public int Vie
-		{
-			get { return _vie; }
-			set { _vie = value; }
-		}
+        //*********** Attributs ***********//
 
+        /// <summary>
+        /// Stocke le nombre de vies restantes du joueur
+        /// </summary>
+        private int _vie;
+
+        /// <summary>
+        /// Stocke la position de l'affichage du score dans la console
+        /// </summary>
+        private Position _position;
+
+        /// <summary>
+        /// Contient les lignes du tableau de score
+        /// </summary>
+        private string[] _score;
+
+        /// <summary>
+        /// Stocke la référence vers le joueur concerné
+        /// </summary>
+        private Joueur _joueur;
+
+        /// <summary>
+        /// Stocke le nom du joueur pour l'affichage
+        /// </summary>
+        private string _nomJoueur;
+
+
+        //*********** Propriétés ***********//
+
+        /// <summary>
+        /// Retourne ou modifie le nombre de vies du joueur affiché dans le score
+        /// </summary>
+        public int Vie
+        {
+            get { return _vie; }
+            set { _vie = value; }
+        }
+
+
+        //*********** Constructeur ***********//
+
+        /// <summary>
+        /// Initialise l'affichage du score pour un joueur donné
+        /// </summary>
+        /// <param name="position">Position où le score doit être affiché</param>
+        /// <param name="joueur">Joueur associé au score</param>
         public Score(Position position, Joueur joueur)
         {
             _vie = joueur.Vie;
@@ -34,10 +74,18 @@ namespace Projet_320
             _nomJoueur = joueur.Nom;
         }
 
-       public void DisplayScore()
+        //*********** Méthodes ***********//
+
+        /// <summary>
+        /// Affiche le score du joueur en mettant à jour le nombre de vies restantes
+        /// </summary>
+        public void DisplayScore()
         {
+            // Formate le nom et les cœurs pour assurer un bon alignement
             _nomJoueur = _joueur.Nom.PadRight(20);
             string _coeur = new string('♥', _vie).PadRight(20);
+
+            // Crée le tableau de score
             _score = new string[]
             {
                "╔══════════════════════╗",
