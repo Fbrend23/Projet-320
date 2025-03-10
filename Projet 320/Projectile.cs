@@ -26,7 +26,7 @@ namespace Projet_320
         /// <summary>
         /// Constante représentant la gravité utilisée dans le calcul de la trajectoire
         /// </summary>
-        private const double _gravity = 9.81;
+        private const double _gravity = 20;
 
         /// <summary>
         /// Angle de tir du projectile en degrés
@@ -206,6 +206,13 @@ namespace Projet_320
                     // Désactive le projectile s'il sort de la fenêtre
                     _isActive = false;
                 }
+            }
+
+            // Si le projectile n'est pas actif, efface la dernière position
+            else if (_prevX != -1 && _prevY != -1)
+            {
+                Console.SetCursorPosition(_prevX, _prevY);
+                Console.Write(" ");
             }
         }
      }

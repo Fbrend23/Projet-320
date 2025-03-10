@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Projet_320_Tests")]
+[assembly: InternalsVisibleTo("UnitTest1")]
 
 namespace Projet_320
 {

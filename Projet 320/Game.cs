@@ -159,10 +159,6 @@ namespace Projet_320
                                     _collisionDetected = true;
                                     _joueur2.TakeDamage();
                                     proj.IsActive = false;
-
-                                    // Efface l'affichage du projectile
-                                    Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
-                                    Console.Write(" ");
                                 }
                             }
                             else
@@ -173,10 +169,6 @@ namespace Projet_320
                                     _collisionDetected = true;
                                     _joueur1.TakeDamage();
                                     proj.IsActive = false;
-
-                                    // Effacer l'affichage du projectile
-                                    Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
-                                    Console.Write(" ");
                                 }
                             }
 
