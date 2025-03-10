@@ -84,12 +84,12 @@ namespace Projet_320
         public Game() 
         { 
             //Création des objets
-            _joueur1 = new Joueur("J1", true, 3, new Position(30, 10));
-            _joueur2 = new Joueur("J2", false, 3, new Position(Config.SCREEN_WIDTH - 30, 10));
-            _tour1 = new Tour(3, 5, new Position(40, Config.SCREEN_HEIGHT - 12));
-            _tour2 = new Tour(3, 5, new Position(Config.SCREEN_WIDTH - 40, Config.SCREEN_HEIGHT - 12));
-            _interfaceTirJ1 = new GestionnaireTir(new Position(30, Config.SCREEN_HEIGHT - 12), false);
-            _interfaceTirJ2 = new GestionnaireTir(new Position(Config.SCREEN_WIDTH - 30, Config.SCREEN_HEIGHT - 12),true);
+            _joueur1 = new Joueur("J1", true, 3, new Position(35, 10));
+            _joueur2 = new Joueur("J2", false, 3, new Position(Config.SCREEN_WIDTH - 35, 10));
+            _tour1 = new Tour(3, 5, new Position(45, Config.SCREEN_HEIGHT - 12));
+            _tour2 = new Tour(3, 5, new Position(Config.SCREEN_WIDTH - 45, Config.SCREEN_HEIGHT - 12));
+            _interfaceTirJ1 = new GestionnaireTir(new Position(35, Config.SCREEN_HEIGHT - 12), false);
+            _interfaceTirJ2 = new GestionnaireTir(new Position(Config.SCREEN_WIDTH - 35, Config.SCREEN_HEIGHT - 12),true);
             _projectiles = new List<Projectile>();
             _scoreJ1 = new Score(new Position(10,3),_joueur1);
             _scoreJ2 = new Score(new Position(Config.SCREEN_WIDTH - 50, 3), _joueur2);
@@ -104,6 +104,9 @@ namespace Projet_320
             // Configure la console pour le jeu
             Config.ConfigJeu();
 
+            //Créer les tours
+            _tour1.CréerTour();
+            _tour2.CréerTour();
 
             while (true)
             {
@@ -161,10 +164,6 @@ namespace Projet_320
                                     Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
                                     Console.Write(" ");
                                 }
-                                if(_tour2.Hitbox.isTouched(proj.Position.X,proj.Position.Y))
-                                {
-                                    _tour2.TourCollision();
-                                }
                             }
                             else
                             {
@@ -179,11 +178,17 @@ namespace Projet_320
                                     Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
                                     Console.Write(" ");
                                 }
+                            }
+
+                            //Détection si les tours sont touchées
                                 if (_tour1.Hitbox.isTouched(proj.Position.X, proj.Position.Y))
                                 {
                                     _tour1.TourCollision();
                                 }
-                            }
+                                if(_tour2.Hitbox.isTouched(proj.Position.X,proj.Position.Y))
+                                {
+                                    _tour2.TourCollision();
+                                }
                             
                             // Si le projectile n'est plus actif (collision ou hors écran) on le supprime de la liste
                             if (!proj.IsActive)
