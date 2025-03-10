@@ -54,7 +54,6 @@ namespace Projet_320
         /// </summary>
         public int Vie
         {
-            get { return _vie; }
             set { _vie = value; }
         }
 
@@ -83,7 +82,7 @@ namespace Projet_320
         {
             // Formate le nom et les cœurs pour assurer un bon alignement
             _nomJoueur = _joueur.Nom.PadRight(20);
-            string _coeur = new string('♥', _vie).PadRight(20);
+            string _coeur = new string('♥', _joueur.Vie).PadRight(20);
 
             // Crée le tableau de score
             _score = new string[]
