@@ -62,7 +62,7 @@ namespace Projet_320
         /// <summary>
         /// Puissance actuellement sélectionnée pour le tir
         /// </summary>
-        private int power;
+        private int _power;
 
         /// <summary>
         /// Position X précédente du point de visée pour effacer son ancien affichage
@@ -100,10 +100,17 @@ namespace Projet_320
         {
             get
             {
-                return power;
+                return _power;
             }
         }
 
+        public Position Position
+        {
+            get 
+            {
+                return _position;   
+            } 
+        }
         //*********** Constructeur ***********//
 
         /// <summary>
@@ -220,7 +227,7 @@ namespace Projet_320
         public int SelectPower()
         {
             int barWidth = 20; // Largeur de la barre de progression
-            power = _powerMin; // Puissance de départ
+            _power = _powerMin; // Puissance de départ
 
             // Affichage de l'instruction
             Console.SetCursorPosition(0, 0);
@@ -233,7 +240,7 @@ namespace Projet_320
                 Console.SetCursorPosition(10, 8);
 
                 // Construis la barre de progression
-                int filled = (int)((double)power / _powerMax * barWidth);
+                int filled = (int)((double)_power / _powerMax * barWidth);
                 string bar = "[" + new string('■', filled) + new string(' ', barWidth - filled) + "]";
 
                 // Afficher la barre et le pourcentage de puissance
@@ -242,15 +249,15 @@ namespace Projet_320
 
                 // Augmente la puissance progressivement
                 power += 5;
-                if (power > _powerMax)
+                if (_power > _powerMax)
                 {
-                    power = _powerMax;
+                    _power = _powerMax;
                 }
 
                 //Retourne à 0 si le joueur n'a pas appuyer sur espace
-                if (power == _powerMax) 
+                if (_power == _powerMax) 
                 {
-                  power = _powerMin;
+                  _power = _powerMin;
                 }
 
                 // Vérifier si l'utilisateur appuie sur Espace
@@ -263,7 +270,7 @@ namespace Projet_320
                     }
                 }
             }
-            return power;
+            return _power;
         }
     }
 }
