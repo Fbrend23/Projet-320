@@ -11,6 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("Projet_320_Tests")]
+
 namespace Projet_320
 {
     /// <summary>

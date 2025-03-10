@@ -17,7 +17,7 @@ namespace Projet_320
      /// Définit une zone rectangulaire utilisée pour la détection des collisions
      /// Permet de savoir si un point donné se trouve à l'intérieur de la hitbox (rectangle)
      /// </summary>
-    internal class Hitbox
+    public class Hitbox
     {
         //*********** Attributs ***********//
 
