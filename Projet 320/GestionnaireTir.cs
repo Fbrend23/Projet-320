@@ -129,13 +129,13 @@ namespace Projet_320
             //Activation du mode mirroir si c'est le joueur 2
             if (_mirror == true)
             {
-                _angleMin = 90;
-                _angleMax = 180;
+                _angleMin = 110;
+                _angleMax = 150;
             }
             else
             {
-                _angleMin = 0;
-                _angleMax = 90;
+                _angleMin = 30;
+                _angleMax = 70;
             }
         }
 
@@ -152,9 +152,12 @@ namespace Projet_320
             int direction = 1; // 1 = droite, -1 = gauche
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("Sélection de l'angle (Appuie sur [Espace] pour valider) :               "); // Beaucoup d'espace pour effacer le message de puissance
-
             while (true)
             {
+                //debug
+                Console.SetCursorPosition(0,1);
+                Console.WriteLine(angle);
+
                 Console.SetCursorPosition(0, 1);
                 // Affichage de l'arc avec l'angle courant passé en paramètre
                 TirDisplay(angle);

@@ -164,6 +164,10 @@ namespace Projet_320
             double rad = _angle * Math.PI / 180.0;
             int newX = _position.X + (int)(_initialVelocity * Math.Cos(rad) * _time);
             int newY = _position.Y - (int)((_initialVelocity * Math.Sin(rad) * _time) - (0.5 * _gravity * _time * _time));
+            
+            // Affichage de debogage temporaire
+            Console.SetCursorPosition(80, 30);
+            Console.Write($"X: {newX} Y: {newY}  ");
 
             _position = new Position(newX, newY);
 
