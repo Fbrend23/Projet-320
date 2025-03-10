@@ -246,11 +246,11 @@ namespace Projet_320
                 string bar = "[" + new string('■', filled) + new string(' ', barWidth - filled) + "]";
 
                 // Afficher la barre et le pourcentage de puissance
-                Console.Write(bar + " " + power + "%   ");
+                Console.Write(bar + " " + _power + "%   ");
                 Thread.Sleep(100);                 // Pause pour l'animation
 
                 // Augmente la puissance progressivement
-                power += 5;
+                _power += 5;
                 if (_power > _powerMax)
                 {
                     _power = _powerMax;
