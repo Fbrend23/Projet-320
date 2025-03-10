@@ -103,7 +103,9 @@ namespace Projet_320
                 return _power;
             }
         }
-
+        /// <summary>
+        /// Retourne la position de l'interface
+        /// </summary>
         public Position Position
         {
             get 
