@@ -88,10 +88,8 @@ namespace Projet_320
 
         //*********** Méthodes ***********//
 
-        /// <summary>
-        /// Affichage de la tour
-        /// </summary>
-        public void AffichageTour()
+
+        public void CréerTour()
         {
             //Remplissage du tableau avec un █
             for (int i = 0; i < _tourArray.GetLength(0); i++)
@@ -99,7 +97,14 @@ namespace Projet_320
                 for(int j = 0; j < _tourArray.GetLength(1); j++)
                 _tourArray[i,j] = _bloc;
             }
+        }
 
+
+        /// <summary>
+        /// Affichage de la tour
+        /// </summary>
+        public void AffichageTour()
+        {
             //Affichage de la tour
             Console.SetCursorPosition(_position.X,_position.Y);
             for (int i = 0; i < _hauteur; i++)
