@@ -5,13 +5,6 @@ C:\Users\yochy\Documents\GitHub\Projet-320\Projet 320\bin\Debug\Projet 320.exe
 C:\Users\yochy\Documents\GitHub\Projet-320\Projet 320\bin\Debug\Projet 320.pdb
 C:\Users\yochy\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.exe
 C:\Users\yochy\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.pdb
-E:\Documents\GitHub\Projet-320\Projet 320\bin\Debug\Projet 320.exe.config
-E:\Documents\GitHub\Projet-320\Projet 320\bin\Debug\Projet 320.exe
-E:\Documents\GitHub\Projet-320\Projet 320\bin\Debug\Projet 320.pdb
-E:\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.csproj.AssemblyReference.cache
-E:\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.csproj.CoreCompileInputs.cache
-E:\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.exe
-E:\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.pdb
 C:\Users\brefleurdel\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.csproj.AssemblyReference.cache
 C:\Users\brefleurdel\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.csproj.SuggestedBindingRedirects.cache
 C:\Users\brefleurdel\Documents\GitHub\Projet-320\Projet 320\obj\Debug\Projet 320.csproj.CoreCompileInputs.cache

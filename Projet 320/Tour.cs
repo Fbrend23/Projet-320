@@ -113,11 +113,31 @@ namespace Projet_320
             }
         }
         /// <summary>
-        /// Remplace les blocs de la tour s'ils sont touchés
+        /// Remplace un bloc de la tour lorsqu'elle est touchée en mettant à jour l'affichage
+        /// Parcourt le tableau représentant la tour et remplace le premier bloc intact par un espace
+        /// Rafraîchit l'affichage de la tour
         /// </summary>
         public void TourCollision()
         {
-            //todo
+            bool blocRemplace = false;
+
+            // Parcourt le tableau de la tour pour trouver un bloc intact
+            for (int i = 0; i < _tourArray.GetLength(0) && !blocRemplace; i++)
+            {
+                for (int j = 0; j < _tourArray.GetLength(1); j++)
+                {
+                    // Si le bloc est intact (représenté par "█")
+                    if (_tourArray[i, j] == "█")
+                    {
+                        // Remplace le bloc par un espace pour indiquer qu'il est endommagé
+                        _tourArray[i, j] = " ";
+                        blocRemplace = true;
+                        break;
+                    }
+                }
+            }
+            // Rafraîchit l'affichage de la tour pour montrer la mise à jour
+            AffichageTour();
         }
     }
 }

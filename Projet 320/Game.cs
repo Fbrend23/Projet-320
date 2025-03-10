@@ -104,14 +104,14 @@ namespace Projet_320
             // Configure la console pour le jeu
             Config.ConfigJeu();
 
+
+            while (true)
+            {
             // Afficher les éléments du jeu
             _joueur1.AffichageJoueur();
             _tour1.AffichageTour();
             _joueur2.AffichageJoueur();
             _tour2.AffichageTour();
-
-            while (true)
-            {
                 // Affiche les scores à chaque début de tour
                 _scoreJ1.DisplayScore();
                 _scoreJ2.DisplayScore();
@@ -161,6 +161,10 @@ namespace Projet_320
                                     Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
                                     Console.Write(" ");
                                 }
+                                if(_tour2.Hitbox.isTouched(proj.Position.X,proj.Position.Y))
+                                {
+                                    _tour2.TourCollision();
+                                }
                             }
                             else
                             {
@@ -175,8 +179,12 @@ namespace Projet_320
                                     Console.SetCursorPosition(proj.Position.X, proj.Position.Y);
                                     Console.Write(" ");
                                 }
+                                if (_tour1.Hitbox.isTouched(proj.Position.X, proj.Position.Y))
+                                {
+                                    _tour1.TourCollision();
+                                }
                             }
-
+                            
                             // Si le projectile n'est plus actif (collision ou hors écran) on le supprime de la liste
                             if (!proj.IsActive)
                             {

@@ -5,15 +5,15 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Projet_320_Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("DGEP")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Projet_320_Tests")]
-[assembly: AssemblyCopyright("Copyright © DGEP 2025")]
+[assembly: AssemblyCopyright("Copyright ©  2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
+[assembly: InternalsVisibleTo("Projet_320")]
 [assembly: ComVisible(false)]
 
-[assembly: Guid("7f4efdcd-5163-4bae-a816-cde4c5f3c101")]
+[assembly: Guid("c76d3326-0584-4607-8e3d-d48019367c06")]
 
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
