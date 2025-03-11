@@ -26,7 +26,7 @@ namespace Projet_320
         /// <summary>
         /// Constante représentant la gravité utilisée dans le calcul de la trajectoire
         /// </summary>
-        private const double _gravity = 20;
+        private const double _gravity = 9.81;
 
         /// <summary>
         /// Angle de tir du projectile en degrés
@@ -171,8 +171,24 @@ namespace Projet_320
 
             _position = new Position(newX, newY);
 
+            //Debug
+            int windowWidth;
+            int windowHeight;
+            if (Environment.UserInteractive)
+            {
+                windowWidth = Console.WindowWidth;
+                windowHeight = Console.WindowHeight;
+            }
+            else
+            {
+                // En environnement non interactif (tests unitaires), utiliser des valeurs par défaut
+                windowWidth = Config.SCREEN_WIDTH;
+                windowHeight = Config.SCREEN_HEIGHT;
+            }
+            //Fin debug
+
             // Si le projectile sort de la fenêtre ou "touche le sol", on le désactive.
-            if (newY >= Console.WindowHeight || newX >= Console.WindowWidth || newX < 0)
+            if (newY >= windowHeight || newX >= windowWidth || newX < 0)
             {
                 _isActive = false;
             }
@@ -203,8 +219,7 @@ namespace Projet_320
                 }
                 catch (ArgumentOutOfRangeException)
                 {
-                    // Désactive le projectile s'il sort de la fenêtre
-                    _isActive = false;
+
                 }
             }
 

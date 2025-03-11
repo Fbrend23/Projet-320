@@ -84,12 +84,12 @@ namespace Projet_320
         public Game() 
         { 
             //Création des objets
-            _joueur1 = new Joueur("J1", true, 3, new Position(35, 10));
-            _joueur2 = new Joueur("J2", false, 3, new Position(Config.SCREEN_WIDTH - 35, 10));
-            _tour1 = new Tour(3, 5, new Position(45, Config.SCREEN_HEIGHT - 12));
-            _tour2 = new Tour(3, 5, new Position(Config.SCREEN_WIDTH - 45, Config.SCREEN_HEIGHT - 12));
-            _interfaceTirJ1 = new GestionnaireTir(new Position(35, Config.SCREEN_HEIGHT - 12), false);
-            _interfaceTirJ2 = new GestionnaireTir(new Position(Config.SCREEN_WIDTH - 35, Config.SCREEN_HEIGHT - 12),true);
+            _joueur1 = new Joueur("J1", true, 3, new Position(28, 10));
+            _joueur2 = new Joueur("J2", false, 3, new Position(Config.SCREEN_WIDTH - 28, 10));
+            _tour1 = new Tour(3, 5, new Position(38, Config.SCREEN_HEIGHT - 12));
+            _tour2 = new Tour(3, 5, new Position(Config.SCREEN_WIDTH - 38, Config.SCREEN_HEIGHT - 12));
+            _interfaceTirJ1 = new GestionnaireTir(new Position(28, Config.SCREEN_HEIGHT - 12), false);
+            _interfaceTirJ2 = new GestionnaireTir(new Position(Config.SCREEN_WIDTH - 28, Config.SCREEN_HEIGHT - 12),true);
             _projectiles = new List<Projectile>();
             _scoreJ1 = new Score(new Position(10,3),_joueur1);
             _scoreJ2 = new Score(new Position(Config.SCREEN_WIDTH - 50, 3), _joueur2);

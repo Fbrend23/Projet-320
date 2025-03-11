@@ -39,10 +39,44 @@ namespace Projet_320
         /// </summary>
         static public void ConfigJeu()
         {
-            Console.SetWindowSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
-            Console.CursorVisible = false;
+            if (!Console.IsOutputRedirected)
+            {
+                Console.SetWindowSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
+                Console.CursorVisible = false;
+            }
         }
 
+        /// <summary>
+        /// Retourne la largeur de la fenêtre, ajouté pour un test unitaire
+        /// </summary>
+        /// <returns></returns>
+        public static int GetWindowWidth()
+        {
+            try
+            {
+                return Console.WindowWidth;
+            }
+            catch (System.IO.IOException)
+            {
+                return SCREEN_WIDTH;
+            }
+        }
+
+        /// <summary>
+        /// Retourne la hauteur de la fenêtre, ajouté pour un test unitaire
+        /// </summary>
+        /// <returns></returns>
+        public static int GetWindowHeight()
+        {
+            try
+            {
+                return Console.WindowHeight;
+            }
+            catch (System.IO.IOException)
+            {
+                return SCREEN_HEIGHT;
+            }
+        }
     }
 
    

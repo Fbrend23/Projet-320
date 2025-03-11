@@ -42,7 +42,7 @@ namespace Projet_320
         /// <summary>
         /// Puissance maximale du tir
         /// </summary>
-        private int _powerMax = 100;
+        private int _powerMax = 80;
 
         /// <summary>
         /// Caractère représentant le point de visée sur l'arc
@@ -135,7 +135,7 @@ namespace Projet_320
             else
             {
                 _angleMin = 30;
-                _angleMax = 70;
+                _angleMax = 80;
             }
         }
 
@@ -156,14 +156,14 @@ namespace Projet_320
             {
                 //debug
                 Console.SetCursorPosition(0,1);
-                Console.WriteLine(angle);
+                Console.WriteLine(angle + "    ");
 
                 Console.SetCursorPosition(0, 1);
                 // Affichage de l'arc avec l'angle courant passé en paramètre
                 TirDisplay(angle);
 
                 // Attendre un peu pour un mouvement fluide
-                Thread.Sleep(150);
+                Thread.Sleep(200);
 
                 // Modifier l'angle dans la direction actuelle
                 angle = angle + (direction * 5);
@@ -196,7 +196,7 @@ namespace Projet_320
         public void TirDisplay(int currentAngle)
         {
             _angle = currentAngle;
-            int arc = 4; // Arc du tir
+            int arc = 5; // Arc du tir depuis la position initiale
 
             // Conversion de l'angle en radians
             double rad = currentAngle * Math.PI / 180.0;
@@ -240,7 +240,6 @@ namespace Projet_320
 
             while (true)
             {
-
                 // Positionner le curseur sur la ligne d'affichage de la barre 
                 Console.SetCursorPosition(10, 8);
 
@@ -249,7 +248,7 @@ namespace Projet_320
                 string bar = "[" + new string('■', filled) + new string(' ', barWidth - filled) + "]";
 
                 // Afficher la barre et le pourcentage de puissance
-                Console.Write(bar + " " + _power + "%   ");
+                Console.Write(bar);
                 Thread.Sleep(100);                 // Pause pour l'animation
 
                 // Augmente la puissance progressivement
