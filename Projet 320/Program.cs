@@ -30,6 +30,7 @@ namespace Projet_320
 
             // Lance la boucle du jeu
             game.RunGame();
+            game.AfficherEcranDeFin();
         }
     }
 }

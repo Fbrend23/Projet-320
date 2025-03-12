@@ -7,6 +7,7 @@
 ////////////////////////////////////////////////////////////////
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -78,20 +79,39 @@ namespace Projet_320
         private Score _scoreJ2;
 
         /// <summary>
+        /// Reprense le gagnant
+        /// </summary>
+        private string _winner;
+
+
+        //*********** Propriétés ***********//
+
+        /// <summary>
+        /// Retourne le gagnant
+        /// </summary>
+        public string Winner
+        {
+            get { return _winner; }
+            set { value = _winner; }
+        }
+
+
+
+        /// <summary>
         /// Initialise tous les objets nécessaires au jeu
         /// Configure les joueurs, les tours, les interfaces de tir et le score
         /// </summary>
-        public Game() 
-        { 
+        public Game()
+        {
             //Création des objets
             _joueur1 = new Joueur("J1", true, 3, new Position(28, 10));
             _joueur2 = new Joueur("J2", false, 3, new Position(Config.SCREEN_WIDTH - 28, 10));
             _tour1 = new Tour(3, 5, new Position(38, Config.SCREEN_HEIGHT - 12));
             _tour2 = new Tour(3, 5, new Position(Config.SCREEN_WIDTH - 38, Config.SCREEN_HEIGHT - 12));
             _interfaceTirJ1 = new GestionnaireTir(new Position(28, Config.SCREEN_HEIGHT - 12), false);
-            _interfaceTirJ2 = new GestionnaireTir(new Position(Config.SCREEN_WIDTH - 28, Config.SCREEN_HEIGHT - 12),true);
+            _interfaceTirJ2 = new GestionnaireTir(new Position(Config.SCREEN_WIDTH - 28, Config.SCREEN_HEIGHT - 12), true);
             _projectiles = new List<Projectile>();
-            _scoreJ1 = new Score(new Position(10,3),_joueur1);
+            _scoreJ1 = new Score(new Position(10, 3), _joueur1);
             _scoreJ2 = new Score(new Position(Config.SCREEN_WIDTH - 50, 3), _joueur2);
         }
 
@@ -108,13 +128,13 @@ namespace Projet_320
             _tour1.CréerTour();
             _tour2.CréerTour();
 
-            while (true)
+            while (_joueur1.Vie > 0 && _joueur2.Vie > 0)
             {
-            // Afficher les éléments du jeu
-            _joueur1.AffichageJoueur();
-            _tour1.AffichageTour();
-            _joueur2.AffichageJoueur();
-            _tour2.AffichageTour();
+                // Afficher les éléments du jeu
+                _joueur1.AffichageJoueur();
+                _tour1.AffichageTour();
+                _joueur2.AffichageJoueur();
+                _tour2.AffichageTour();
                 // Affiche les scores à chaque début de tour
                 _scoreJ1.DisplayScore();
                 _scoreJ2.DisplayScore();
@@ -126,6 +146,7 @@ namespace Projet_320
                     int power = _interfaceTirJ1.SelectPower();
                     Projectile projectile = new Projectile(angle, power, _interfaceTirJ1.Position, true, 0);
                     _projectiles.Add(projectile);
+                    _joueur2.TakeDamage();
                 }
                 else
                 {
@@ -133,14 +154,12 @@ namespace Projet_320
                     int power = _interfaceTirJ2.SelectPower();
                     Projectile projectile = new Projectile(angle, power, _interfaceTirJ2.Position, true, 0);
                     _projectiles.Add(projectile);
+
                 }
 
                 // Anime le projectile jusqu'à sa fin de vie
                 while (_projectiles.Count > 0)
                 {
-                        Console.SetCursorPosition(80, 20);
-                        Console.Write(_collisionDetected);
-
                     // Parcourir une copie de la liste pour éviter de modifier la liste pendant l'itération
                     foreach (var proj in new List<Projectile>(_projectiles))
                     {
@@ -173,15 +192,15 @@ namespace Projet_320
                             }
 
                             //Détection si les tours sont touchées
-                                if (_tour1.Hitbox.isTouched(proj.Position.X, proj.Position.Y))
-                                {
-                                    _tour1.TourCollision();
-                                }
-                                if(_tour2.Hitbox.isTouched(proj.Position.X,proj.Position.Y))
-                                {
-                                    _tour2.TourCollision();
-                                }
-                            
+                            if (_tour1.Hitbox.isTouched(proj.Position.X, proj.Position.Y))
+                            {
+                                _tour1.TourCollision();
+                            }
+                            if (_tour2.Hitbox.isTouched(proj.Position.X, proj.Position.Y))
+                            {
+                                _tour2.TourCollision();
+                            }
+
                             // Si le projectile n'est plus actif (collision ou hors écran) on le supprime de la liste
                             if (!proj.IsActive)
                             {
@@ -195,6 +214,58 @@ namespace Projet_320
                 _isPlayer1Turn = !_isPlayer1Turn;
 
             }
-        }  
+            if(_joueur1.Vie == 0)
+                {
+                 _winner = $"{_joueur2.Nom}";
+            
+                }
+                else
+                {
+                    _winner = $"{_joueur1.Nom}";
+                }
+
+        }
+
+        /// <summary>
+        /// Affiche l'écran de fin du jeu avec le message "Game Over" et le joueur gagnant.
+        /// </summary>
+        /// <param name="winner">Le joueur qui a gagné</param>
+        public void AfficherEcranDeFin()
+        {
+            {
+                Console.Clear(); // Efface l'écran
+                Console.ForegroundColor = ConsoleColor.Red; // Couleur du texte en rouge
+
+                string[] gameOver =
+                {
+                @"      ██████╗  █████╗ ███╗   ███╗███████╗     ██████╗ ██╗   ██╗███████╗██████╗ ",
+                @"     ██╔════╝ ██╔══██╗████╗ ████║██╔════╝    ██╔═══██╗██║   ██║██╔════╝██╔══██╗",
+                @"     ██║  ███╗███████║██╔████╔██║█████╗      ██║   ██║██║   ██║█████╗  ██████╔╝",
+                @"     ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      ██║   ██║╚██╗ ██╔╝██╔══╝  ██╔══██╗",
+                @"     ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    ╚██████╔╝ ╚████╔╝ ███████╗██║  ██║",
+                @"      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝     ╚═════╝   ╚═══╝  ╚══════╝╚═╝  ╚═╝"
+                };
+
+                int centerX = (Console.WindowWidth / 2) - (gameOver[0].Length / 2);
+                int centerY = Console.WindowHeight / 3;
+
+                for (int i = 0; i < gameOver.Length; i++)
+                {
+                    Console.SetCursorPosition(centerX, centerY + i);
+                    Console.WriteLine(gameOver[i]);
+                }
+
+                Console.ResetColor(); // Réinitialise la couleur du texte
+                Console.SetCursorPosition(Console.WindowWidth / 2 - 30, centerY + 10);
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"Le gagnant est : {_winner} !");
+
+                Console.ResetColor();
+                Console.SetCursorPosition(Console.WindowWidth / 2 - 30, centerY + 12);
+                Console.WriteLine("Appuie sur une touche pour quitter...");
+                Console.ReadKey();
+            }
+
+        }
     }
 }

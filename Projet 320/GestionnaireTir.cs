@@ -154,9 +154,9 @@ namespace Projet_320
             Console.WriteLine("Sélection de l'angle (Appuie sur [Espace] pour valider) :               "); // Beaucoup d'espace pour effacer le message de puissance
             while (true)
             {
-                //debug
-                Console.SetCursorPosition(0,1);
-                Console.WriteLine(angle + "    ");
+                ////debug
+                //Console.SetCursorPosition(0,1);
+                //Console.WriteLine(angle + "    ");
 
                 Console.SetCursorPosition(0, 1);
                 // Affichage de l'arc avec l'angle courant passé en paramètre
