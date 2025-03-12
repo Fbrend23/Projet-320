@@ -7,11 +7,7 @@
 ////////////////////////////////////////////////////////////////
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Projet_320
 {
@@ -79,7 +75,6 @@ namespace Projet_320
         /// </summary>
         private bool _mirror;
 
-
         //*********** Propriétés ***********//
 
         /// <summary>
@@ -108,10 +103,10 @@ namespace Projet_320
         /// </summary>
         public Position Position
         {
-            get 
+            get
             {
-                return _position;   
-            } 
+                return _position;
+            }
         }
         //*********** Constructeur ***********//
 
@@ -146,7 +141,7 @@ namespace Projet_320
         /// Le joueur doit appuyer sur [Espace] pour valider son choix
         /// </summary>
         /// <returns>L'angle de tir sélectionné</returns>
-        public int SelectAngle() 
+        public int SelectAngle()
         {
             int angle = _angleMin;
             int direction = 1; // 1 = droite, -1 = gauche
@@ -169,7 +164,7 @@ namespace Projet_320
                 angle = angle + (direction * 5);
 
                 // Change la direction si on atteint les limites
-                if (angle >= _angleMax || angle <= _angleMin) 
+                if (angle >= _angleMax || angle <= _angleMin)
                 {
                     direction = direction * (-1);
                 }
@@ -184,7 +179,7 @@ namespace Projet_320
                     }
                 }
             }
-            return angle ;
+            return angle;
         }
 
 
@@ -231,7 +226,7 @@ namespace Projet_320
         /// <returns>La puissance de tir sélectionnée</returns>
         public int SelectPower()
         {
-            int barWidth = 20; // Largeur de la barre de progression
+
             _power = _powerMin; // Puissance de départ
 
             // Affichage de l'instruction
@@ -240,17 +235,8 @@ namespace Projet_320
 
             while (true)
             {
-                // Positionner le curseur sur la ligne d'affichage de la barre 
-                Console.SetCursorPosition(10, 8);
-
-                // Construis la barre de progression
-                int filled = (int)((double)_power / _powerMax * barWidth);
-                string bar = "[" + new string('■', filled) + new string(' ', barWidth - filled) + "]";
-
-                // Afficher la barre et le pourcentage de puissance
-                Console.Write(bar);
+                AffichagePower(_power);
                 Thread.Sleep(100);                 // Pause pour l'animation
-
                 // Augmente la puissance progressivement
                 _power += 5;
                 if (_power > _powerMax)
@@ -259,9 +245,9 @@ namespace Projet_320
                 }
 
                 //Retourne à 0 si le joueur n'a pas appuyer sur espace
-                if (_power == _powerMax) 
+                if (_power == _powerMax)
                 {
-                  _power = _powerMin;
+                    _power = _powerMin;
                 }
 
                 // Vérifier si l'utilisateur appuie sur Espace
@@ -275,6 +261,33 @@ namespace Projet_320
                 }
             }
             return _power;
+        }
+
+        public void AffichagePower(int currentPower)
+        {
+            int barWidth = 20; // Largeur de la barre de progression
+            int filled; 
+            string bar;
+            _power = currentPower;
+
+            if (!_mirror)
+            {
+                Console.SetCursorPosition(_position.X - 17, _position.Y - 20);
+                // Construis la barre de progression
+                filled = (int)((double)_power / _powerMax * barWidth);
+                bar  = "[" + new string('■', filled) + new string(' ', barWidth - filled) + "]";
+                Console.Write(bar);
+            }
+            else
+            {
+                Console.SetCursorPosition(_position.X - 21, _position.Y - 20);
+                // Construis la barre de progression pour le 2ème joueur
+                filled = (int)((double)_power / _powerMax * barWidth);
+                bar = "[" + new string('■', filled) + new string(' ', barWidth - filled) + "]";
+
+                // Afficher la barre et le pourcentage de puissance
+                Console.Write(bar);
+            }
         }
     }
 }

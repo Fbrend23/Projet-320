@@ -95,6 +95,10 @@ namespace Projet_320
             set { value = _winner; }
         }
 
+        public bool IsPlayer1Turn
+        {
+            get { return _isPlayer1Turn; }
+        }
 
 
         /// <summary>
@@ -144,6 +148,7 @@ namespace Projet_320
                 {
                     int angle = _interfaceTirJ1.SelectAngle();
                     int power = _interfaceTirJ1.SelectPower();
+
                     Projectile projectile = new Projectile(angle, power, _interfaceTirJ1.Position, true, 0);
                     _projectiles.Add(projectile);
                     _joueur2.TakeDamage();
