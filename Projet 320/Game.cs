@@ -169,7 +169,7 @@ namespace Projet_320
                     {
                         if (proj.IsActive)
                         {
-                            proj.UpdateProjectile(0.05); // Simule 0,05 seconde d'écoulement
+                            proj.UpdateProjectile(0.02);
                             proj.DisplayProjectile();
 
                             // Vérifier la collision avec le joueur adverse selon le tour actuel

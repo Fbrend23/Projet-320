@@ -171,24 +171,24 @@ namespace Projet_320
 
             _position = new Position(newX, newY);
 
-            //Debug
-            int windowWidth;
-            int windowHeight;
-            if (Environment.UserInteractive)
-            {
-                windowWidth = Console.WindowWidth;
-                windowHeight = Console.WindowHeight;
-            }
-            else
-            {
-                // En environnement non interactif (tests unitaires), utiliser des valeurs par défaut
-                windowWidth = Config.SCREEN_WIDTH;
-                windowHeight = Config.SCREEN_HEIGHT;
-            }
-            //Fin debug
+            ////Debug
+            //int windowWidth;
+            //int windowHeight;
+            //if (Environment.UserInteractive)
+            //{
+            //    windowWidth = Console.WindowWidth;
+            //    windowHeight = Console.WindowHeight;
+            //}
+            //else
+            //{
+            //    // En environnement non interactif (tests unitaires), utiliser des valeurs par défaut
+            //    windowWidth = Config.SCREEN_WIDTH;
+            //    windowHeight = Config.SCREEN_HEIGHT;
+            //}
+            ////Fin debug
 
             // Si le projectile sort de la fenêtre ou "touche le sol", on le désactive.
-            if (newY >= windowHeight || newX >= windowWidth || newX < 0)
+            if (newY >= Config.SCREEN_HEIGHT || newX >= Config.SCREEN_WIDTH || newX < 0)
             {
                 _isActive = false;
             }
