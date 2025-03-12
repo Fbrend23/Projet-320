@@ -151,7 +151,6 @@ namespace Projet_320
 
                     Projectile projectile = new Projectile(angle, power, _interfaceTirJ1.Position, true, 0);
                     _projectiles.Add(projectile);
-                    _joueur2.TakeDamage();
                 }
                 else
                 {
