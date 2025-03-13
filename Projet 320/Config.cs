@@ -35,12 +35,14 @@ namespace Projet_320
 
         /// <summary>
         /// Configure les paramètres de la console au démarrage du jeu
-        /// Définit la taille de la fenêtre et masque le curseur
+        /// Définit la taille de la fenêtre,masque le curseur et force l'encodage en utf-8
         /// </summary>
         static public void ConfigJeu()
         {
             if (!Console.IsOutputRedirected)
             {
+             
+                Console.OutputEncoding = System.Text.Encoding.UTF8;
                 Console.SetWindowSize(Config.SCREEN_WIDTH, Config.SCREEN_HEIGHT);
                 Console.CursorVisible = false;
             }
